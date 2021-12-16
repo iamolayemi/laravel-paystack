@@ -1,0 +1,53 @@
+{
+  "status": true,
+  "message": "Split retrieved",
+  "data": {
+    "id": 12345,
+    "name": "Test Doc",
+    "split_code": "SPL_UO2vBzEqHW",
+    "integration": 428626,
+    "domain": "test",
+    "type": "percentage",
+    "active": 1,
+    "currency": "NGN",
+    "bearer_type": "subaccount",
+    "bearer_subaccount": 40809,
+    "created_at": "2020-06-30T11:52:24.000Z",
+    "updated_at": "2020-06-30T11:52:24.000Z",
+    "subaccounts": [
+      {
+        "subaccount": {
+          "id": 40809,
+          "subaccount_code": "ACCT_z3x6z3nbo14xsil",
+          "business_name": "Business Name",
+          "description": "Business Description",
+          "primary_contact_name": null,
+          "primary_contact_email": null,
+          "primary_contact_phone": null,
+          "metadata": null,
+          "percentage_charge": 80,
+          "settlement_bank": "Business Bank",
+          "account_number": "1234567890"
+        },
+        "share": 30
+      },
+      {
+        "subaccount": {
+          "id": 40811,
+          "subaccount_code": "ACCT_pwwualwty4nhq9d",
+          "business_name": "Business Name",
+          "description": "Business Description",
+          "primary_contact_name": null,
+          "primary_contact_email": null,
+          "primary_contact_phone": null,
+          "metadata": null,
+          "percentage_charge": 80,
+          "settlement_bank": "Business Bank",
+          "account_number": "0123456789"
+        },
+        "share": 20
+      }
+    ],
+    "total_subaccounts": 2
+  }
+}

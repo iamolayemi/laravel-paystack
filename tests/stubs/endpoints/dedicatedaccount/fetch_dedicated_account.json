@@ -1,0 +1,47 @@
+{
+    "status": true,
+    "message": "Customer retrieved",
+    "data": {
+        "transactions": [],
+        "subscriptions": [],
+        "authorizations": [],
+        "first_name": null,
+        "last_name": null,
+        "email": "rhode@chu.com",
+        "phone": null,
+        "metadata": null,
+        "domain": "live",
+        "customer_code": "CUS_h00a7ngn0xbzf2g",
+        "risk_action": "default",
+        "id": 17593,
+        "integration": 190972,
+        "createdAt": "2019-10-25T15:05:23.000Z",
+        "updatedAt": "2019-10-25T15:05:23.000Z",
+        "created_at": "2019-10-25T15:05:23.000Z",
+        "updated_at": "2019-10-25T15:05:23.000Z",
+        "total_transactions": 0,
+        "total_transaction_value": [],
+        "dedicated_account": {
+            "id": 59,
+            "account_name": "KAROKART/RHODA CHURCH",
+            "account_number": "9807062474",
+            "created_at": "2019-09-10T11:10:12.000Z",
+            "updated_at": "2019-10-25T15:05:24.000Z",
+            "currency": "NGN",
+            "active": true,
+            "assigned": true,
+            "provider": {
+                "id": 1,
+                "provider_slug": "wema-bank",
+                "bank_id": 20,
+                "bank_name": "Wema Bank"
+            },
+            "assignment": {
+                "assignee_id": 17593,
+                "assignee_type": "Customer",
+                "account_type": "PAY-WITH-TRANSFER-RECURRING",
+                "integration": 190972
+            }
+        }
+    }
+}

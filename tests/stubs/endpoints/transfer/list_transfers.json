@@ -1,0 +1,83 @@
+{
+  "status": true,
+  "message": "Transfers retrieved",
+  "data": [
+    {
+      "integration": 100073,
+      "recipient": {
+        "domain": "test",
+        "type": "nuban",
+        "currency": "NGN",
+        "name": "Flesh",
+        "details": {
+          "account_number": "olounje",
+          "account_name": null,
+          "bank_code": "044",
+          "bank_name": "Access Bank"
+        },
+        "description": "Eater",
+        "metadata": null,
+        "recipient_code": "RCP_2x5j67tnnw1t98k",
+        "active": true,
+        "id": 28,
+        "integration": 100073,
+        "createdAt": "2017-02-02T19:39:04.000Z",
+        "updatedAt": "2017-02-02T19:39:04.000Z"
+      },
+      "domain": "test",
+      "amount": 4400,
+      "currency": "NGN",
+      "source": "balance",
+      "source_details": null,
+      "reason": "Eater",
+      "status": "otp",
+      "failures": null,
+      "transfer_code": "TRF_1ptvuv321ahaa7q",
+      "id": 14,
+      "createdAt": "2017-02-03T17:21:54.000Z",
+      "updatedAt": "2017-02-03T17:21:54.000Z"
+    },
+    {
+      "integration": 100073,
+      "recipient": {
+        "domain": "test",
+        "type": "nuban",
+        "currency": "USD",
+        "name": "FleshUSD",
+        "details": {
+          "account_number": "1111111111",
+          "account_name": null,
+          "bank_code": "044",
+          "bank_name": "Access Bank"
+        },
+        "description": "EaterUSD",
+        "metadata": null,
+        "recipient_code": "RCP_bi84k5gguakuqmg",
+        "active": true,
+        "id": 22,
+        "integration": 100073,
+        "createdAt": "2017-01-23T16:52:48.000Z",
+        "updatedAt": "2017-01-23T16:52:48.000Z"
+      },
+      "domain": "test",
+      "amount": 3300,
+      "currency": "NGN",
+      "source": "balance",
+      "source_details": null,
+      "reason": "I love you",
+      "status": "otp",
+      "failures": null,
+      "transfer_code": "TRF_5pr8ypzb0htx0cn",
+      "id": 13,
+      "createdAt": "2017-01-23T16:55:59.000Z",
+      "updatedAt": "2017-01-23T16:55:59.000Z"
+    }
+  ],
+  "meta": {
+    "total": 2,
+    "skipped": 0,
+    "perPage": 50,
+    "page": 1,
+    "pageCount": 1
+  }
+}

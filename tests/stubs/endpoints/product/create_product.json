@@ -1,0 +1,22 @@
+{
+    "status": true,
+    "message": "Product successfully created",
+    "data": {
+        "name": "Product One",
+        "description": "Product One Description",
+        "currency": "NGN",
+        "price": 500000,
+        "unlimited": true,
+        "domain": "test",
+        "integration": 343288,
+        "product_code": "PROD_f58aly7bvn32uiz",
+        "quantity": 0,
+        "type": "good",
+        "is_shippable": false,
+        "active": true,
+        "in_stock": true,
+        "id": 524,
+        "createdAt": "2019-06-29T14:10:29.742Z",
+        "updatedAt": "2019-06-29T14:10:29.742Z"
+    }
+}

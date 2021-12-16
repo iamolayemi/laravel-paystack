@@ -1,0 +1,19 @@
+{
+  "name": "laravel-paystack",
+  "version": "0.0.1",
+  "description": "This package provides an expressive and convenient way to interact with the Paystack API within your Laravel Application.",
+  "main": "index.js",
+  "authors": {
+    "name": "Olayemi Olatayo",
+    "email": "olatayo.olayemi.peter@gmail.com"
+  },
+  "repository": "https://github.com/iamolayemi/laravel-paystack",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "status": true,
+  "message": "Timeline retrieved",
+  "data": {
+    "time_spent": 9061,
+    "attempts": 1,
+    "authentication": null,
+    "errors": 1,
+    "success": false,
+    "mobile": false,
+    "input": [],
+    "channel": "card",
+    "history": [
+      {
+        "type": "open",
+        "message": "Opened payment page",
+        "time": 1
+      },
+      {
+        "type": "input",
+        "message": "Filled these fields: card number, card expiry, card cvc",
+        "time": 39
+      },
+      {
+        "type": "action",
+        "message": "Attempted to pay",
+        "time": 39
+      },
+      {
+        "type": "error",
+        "message": "Error: Declined",
+        "time": 48
+      },
+      {
+        "type": "input",
+        "message": "Filled these fields: card expiry, card cvc",
+        "time": 9061
+      },
+      {
+        "type": "close",
+        "message": "Page closed",
+        "time": 9061
+      }
+    ]
+  }
+}
