@@ -1,0 +1,8 @@
+{
+  "status": true,
+  "message": "Authorization is valid for this amount",
+  "data": {
+    "amount": "2000",
+    "currency": "NGN"
+  }
+}

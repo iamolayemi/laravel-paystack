@@ -1,0 +1,22 @@
+{
+  "status": true,
+  "message": "Transaction totals",
+  "data": {
+    "total_transactions": 10,
+    "unique_customers": 3,
+    "total_volume": 14000,
+    "total_volume_by_currency": [
+      {
+        "currency": "NGN",
+        "amount": 14000
+      }
+    ],
+    "pending_transfers": 24000,
+    "pending_transfers_by_currency": [
+      {
+        "currency": "NGN",
+        "amount": 24000
+      }
+    ]
+  }
+}

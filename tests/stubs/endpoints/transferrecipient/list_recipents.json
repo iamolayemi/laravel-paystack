@@ -1,0 +1,52 @@
+{
+  "status": true,
+  "message": "Recipients retrieved",
+  "data": [
+    {
+      "domain": "test",
+      "type": "nuban",
+      "currency": "NGN",
+      "name": "Flesh",
+      "details": {
+        "account_number": "01000000000",
+        "account_name": null,
+        "bank_code": "044",
+        "bank_name": "Access Bank"
+      },
+      "metadata": {
+        "job": "Eater"
+      },
+      "recipient_code": "RCP_2x5j67tnnw1t98k",
+      "active": true,
+      "id": 28,
+      "createdAt": "2017-02-02T19:39:04.000Z",
+      "updatedAt": "2017-02-02T19:39:04.000Z"
+    },
+    {
+      "integration": 100073,
+      "domain": "test",
+      "type": "nuban",
+      "currency": "NGN",
+      "name": "Flesh",
+      "details": {
+        "account_number": "0100000010",
+        "account_name": null,
+        "bank_code": "044",
+        "bank_name": "Access Bank"
+      },
+      "metadata": {},
+      "recipient_code": "RCP_1i2k27vk4suemug",
+      "active": true,
+      "id": 27,
+      "createdAt": "2017-02-02T19:35:33.000Z",
+      "updatedAt": "2017-02-02T19:35:33.000Z"
+    }
+  ],
+  "meta": {
+    "total": 2,
+    "skipped": 0,
+    "perPage": 50,
+    "page": 1,
+    "pageCount": 1
+  }
+}

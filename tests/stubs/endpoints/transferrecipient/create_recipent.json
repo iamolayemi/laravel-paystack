@@ -1,0 +1,25 @@
+{
+  "status": true,
+  "message": "Recipient created",
+  "data": {
+    "type": "nuban",
+    "name": "Zombie",
+    "description": "Zombier",
+    "metadata": {
+      "job": "Flesh Eater"
+    },
+    "domain": "test",
+    "details": {
+      "account_number": "0100000010",
+      "account_name": null,
+      "bank_code": "044",
+      "bank_name": "Access Bank"
+    },
+    "currency": "NGN",
+    "recipient_code": "RCP_1i2k27vk4suemug",
+    "active": true,
+    "id": 27,
+    "createdAt": "2017-02-02T19:35:33.686Z",
+    "updatedAt": "2017-02-02T19:35:33.686Z"
+  }
+}

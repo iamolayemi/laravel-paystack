@@ -1,0 +1,59 @@
+{
+    "name": "iamolayemi/laravel-paystack",
+    "description": "",
+    "keywords": [
+        "paystack",
+        "laravel"
+    ],
+    "homepage": "https://github.com/iamolayemi/laravel-paystack",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Olayemi Olatayo",
+            "email": "olatayo.olayemi.peter@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "^7.3",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "files": [
+            "src/Helpers.php"
+        ],
+        "psr-4": {
+            "Iamolayemi\\Paystack\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Iamolayemi\\Paystack\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Iamolayemi\\Paystack\\PaystackServiceProvider"
+            ],
+            "aliases": {
+                "Paystack": "Iamolayemi\\Paystack\\Facades\\Paystack"
+            }
+        }
+    }
+}

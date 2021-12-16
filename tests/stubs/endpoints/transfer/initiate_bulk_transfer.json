@@ -1,0 +1,18 @@
+{
+  "status": true,
+  "message": "2 transfers queued.",
+  "data": [
+    {
+      "recipient": "RCP_db342dvqvz9qcrn",
+      "amount": 50000,
+      "transfer_code": "TRF_jblmryckdrc6zq4",
+      "currency": "NGN"
+    },
+    {
+      "recipient": "RCP_db342dvqvz9qcrn",
+      "amount": 50000,
+      "transfer_code": "TRF_yqs7t2w2xndexy7",
+      "currency": "NGN"
+    }
+  ]
+}

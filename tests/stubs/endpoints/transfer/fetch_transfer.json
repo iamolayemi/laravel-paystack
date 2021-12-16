@@ -1,0 +1,37 @@
+{
+  "status": true,
+  "message": "Transfer retrieved",
+  "data": {
+    "recipient": {
+      "domain": "test",
+      "type": "nuban",
+      "currency": "NGN",
+      "name": "Flesh",
+      "details": {
+        "account_number": "olounje",
+        "account_name": null,
+        "bank_code": "044",
+        "bank_name": "Access Bank"
+      },
+      "metadata": null,
+      "recipient_code": "RCP_2x5j67tnnw1t98k",
+      "active": true,
+      "id": 28,
+      "integration": 100073,
+      "createdAt": "2017-02-02T19:39:04.000Z",
+      "updatedAt": "2017-02-02T19:39:04.000Z"
+    },
+    "domain": "test",
+    "amount": 4400,
+    "currency": "NGN",
+    "source": "balance",
+    "source_details": null,
+    "reason": "Redemption",
+    "status": "pending",
+    "failures": null,
+    "transfer_code": "TRF_1ptvuv321ahaa7q",
+    "id": 14938,
+    "createdAt": "2017-02-03T17:21:54.000Z",
+    "updatedAt": "2017-02-03T17:21:54.000Z"
+  }
+}

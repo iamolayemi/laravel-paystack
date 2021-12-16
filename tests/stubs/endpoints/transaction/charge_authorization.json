@@ -1,0 +1,46 @@
+{
+  "status": true,
+  "message": "Charge attempted",
+  "data": {
+    "amount": 27000,
+    "currency": "NGN",
+    "transaction_date": "2020-05-27T11:45:03.000Z",
+    "status": "success",
+    "reference": "cn65lf4ixmkzvda",
+    "domain": "test",
+    "metadata": "",
+    "gateway_response": "Approved",
+    "message": null,
+    "channel": "card",
+    "ip_address": null,
+    "log": null,
+    "fees": 14500,
+    "authorization": {
+      "authorization_code": "AUTH_pmx3mgawyd",
+      "bin": "408408",
+      "last4": "4081",
+      "exp_month": "12",
+      "exp_year": "2020",
+      "channel": "card",
+      "card_type": "visa DEBIT",
+      "bank": "Test Bank",
+      "country_code": "NG",
+      "brand": "visa",
+      "reusable": true,
+      "signature": "SIG_2Gvc6pNuzJmj4TCchXfp",
+      "account_name": null
+    },
+    "customer": {
+      "id": 23215815,
+      "first_name": null,
+      "last_name": null,
+      "email": "mail@mail.com",
+      "customer_code": "CUS_wt0zmhzb0xqd4nr",
+      "phone": null,
+      "metadata": null,
+      "risk_action": "default"
+    },
+    "plan": null,
+    "id": 696105928
+  }
+}
