@@ -14,7 +14,7 @@ Application.
 
 ## Installation
 
-> **Requires [PHP 7.4+](https://php.net/releases/)**
+> **Requires [PHP .4+](https://php.net/releases/)**
 
 You can install the package via composer:
 
