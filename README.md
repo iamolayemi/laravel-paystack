@@ -9,12 +9,9 @@
 This package provides an expressive and convenient way to interact with the Paystack API within your Laravel
 Application.
 
-
-> This project is a work-in-progress. Code and documentation are currently under development and are subject to change.
-
 ## Installation
 
-> **Requires [PHP 8.0+](https://php.net/releases/)**
+> **Requires [PHP 8.1+](https://php.net/releases/)**
 
 You can install the package via composer:
 
