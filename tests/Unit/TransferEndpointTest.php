@@ -4,13 +4,13 @@ namespace Iamolayemi\Paystack\Tests\Unit;
 
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Paystack;
+use Iamolayemi\Paystack\Facades\Paystack;
 
 class TransferEndpointTest extends TestCase
 {
 
-    private const TRANSDER_CODE = 'TRF_1ptvuv321ahaa7q';
-    private const TRANSDER_REFERENCE = 'ref_demo';
+    private const TRANSFER_CODE = 'TRF_1ptvuv321ahaa7q';
+    private const TRANSFER_REFERENCE = 'ref_demo';
 
     /** @test */
     public function a_transfer_can_be_initiated()
@@ -33,11 +33,11 @@ class TransferEndpointTest extends TestCase
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertEquals("Transfer requires OTP to continue", $response['message']);
-        $this->assertEquals(self::TRANSDER_CODE, $response['data']['transfer_code']);
+        $this->assertEquals(self::TRANSFER_CODE, $response['data']['transfer_code']);
     }
 
     /** @test */
-    public function a_transfer_can_be_finialized()
+    public function a_transfer_can_be_finalized()
     {
         Http::fake(
             [
@@ -57,7 +57,7 @@ class TransferEndpointTest extends TestCase
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertEquals("Transfer has been queued", $response['message']);
-        $this->assertEquals(self::TRANSDER_CODE, $response['data']['transfer_code']);
+        $this->assertEquals(self::TRANSFER_CODE, $response['data']['transfer_code']);
     }
 
     /** @test */
@@ -125,12 +125,12 @@ class TransferEndpointTest extends TestCase
         );
 
         $response = Paystack::transfer()
-            ->fetch(self::TRANSDER_CODE)->response();
+            ->fetch(self::TRANSFER_CODE)->response();
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertEquals('Transfer retrieved', $response['message']);
-        $this->assertEquals(self::TRANSDER_CODE, $response['data']['transfer_code']);
+        $this->assertEquals(self::TRANSFER_CODE, $response['data']['transfer_code']);
     }
 
     /** @test */
@@ -149,12 +149,12 @@ class TransferEndpointTest extends TestCase
         );
 
         $response = Paystack::transfer()
-            ->verify(self::TRANSDER_REFERENCE)->response();
+            ->verify(self::TRANSFER_REFERENCE)->response();
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertEquals("Transfer retrieved", $response['message']);
-        $this->assertEquals(self::TRANSDER_REFERENCE, $response['data']['reference']);
+        $this->assertEquals(self::TRANSFER_REFERENCE, $response['data']['reference']);
         $this->assertEquals('success', $response['data']['status']);
     }
 

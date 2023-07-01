@@ -1,10 +1,10 @@
 <?php
 
-namespace Iamolayemi\Paystack\Facades\Tests\Unit;
+namespace Iamolayemi\Paystack\Tests\Unit;
 
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Paystack;
+use Iamolayemi\Paystack\Facades\Paystack;
 
 class TransactionEndpointTest extends TestCase
 {

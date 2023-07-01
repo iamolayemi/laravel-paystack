@@ -4,14 +4,14 @@ namespace Iamolayemi\Paystack\Tests\Unit;
 
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Paystack;
+use Iamolayemi\Paystack\Facades\Paystack;
 
-class TransferRecipentTest extends TestCase
+class TransferRecipientTest extends TestCase
 {
-    private const RECIPENT_CODE = 'RCP_2x5j67tnnw1t98k';
+    private const RECIPIENT_CODE = 'RCP_2x5j67tnnw1t98k';
 
     /** @test */
-    public function a_recipent_can_be_created()
+    public function a_recipient_can_be_created()
     {
         Http::fake(
             [
@@ -25,7 +25,7 @@ class TransferRecipentTest extends TestCase
             ]
         );
 
-        $response = Paystack::recipent()
+        $response = Paystack::recipient()
             ->create([])->response();
 
         Http::assertSentCount(1);
@@ -36,7 +36,7 @@ class TransferRecipentTest extends TestCase
     }
 
     /** @test */
-    public function a_bulk_recipent_can_be_created()
+    public function a_bulk_recipient_can_be_created()
     {
         Http::fake(
             [
@@ -50,7 +50,7 @@ class TransferRecipentTest extends TestCase
             ]
         );
 
-        $response = paystack()->recipent()
+        $response = Paystack::recipient()
             ->createBulk([])->response();
 
         Http::assertSentCount(1);
@@ -60,7 +60,7 @@ class TransferRecipentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_a_list_of_recipents()
+    public function it_returns_a_list_of_recipients()
     {
         Http::fake(
             [
@@ -74,7 +74,7 @@ class TransferRecipentTest extends TestCase
             ]
         );
 
-        $response = Paystack::recipent()
+        $response = Paystack::recipient()
             ->list()->response();
 
         Http::assertSentCount(1);
@@ -84,7 +84,7 @@ class TransferRecipentTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_the_details_of_a_recipent()
+    public function it_returns_the_details_of_a_recipient()
     {
         Http::fake(
             [
@@ -98,17 +98,17 @@ class TransferRecipentTest extends TestCase
             ]
         );
 
-        $response = paystack()->recipent()
-            ->fetch(self::RECIPENT_CODE)->response();
+        $response = paystack()->recipient()
+            ->fetch(self::RECIPIENT_CODE)->response();
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertEquals('Recipient retrieved', $response['message']);
-        $this->assertEquals(self::RECIPENT_CODE, $response['data']['recipient_code']);
+        $this->assertEquals(self::RECIPIENT_CODE, $response['data']['recipient_code']);
     }
 
     /** @test */
-    public function a_recipent_can_be_updated()
+    public function a_recipient_can_be_updated()
     {
         Http::fake(
             [
@@ -122,17 +122,17 @@ class TransferRecipentTest extends TestCase
             ]
         );
 
-        $response = Paystack::recipent()
-            ->update(self::RECIPENT_CODE, [])->response();
+        $response = Paystack::recipient()
+            ->update(self::RECIPIENT_CODE, [])->response();
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertEquals("Recipient updated", $response['message']);
-        $this->assertEquals(self::RECIPENT_CODE, $response['data']['recipient_code']);
+        $this->assertEquals(self::RECIPIENT_CODE, $response['data']['recipient_code']);
     }
 
     /** @test */
-    public function a_recipent_can_be_deactivated()
+    public function a_recipient_can_be_deactivated()
     {
         Http::fake(
             [
@@ -146,7 +146,7 @@ class TransferRecipentTest extends TestCase
             ]
         );
 
-        $response = Paystack::recipent()->deactivate(self::RECIPENT_CODE)->response();
+        $response = Paystack::recipient()->deactivate(self::RECIPIENT_CODE)->response();
 
 
         Http::assertSentCount(1);
