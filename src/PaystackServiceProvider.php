@@ -2,6 +2,7 @@
 
 namespace Iamolayemi\Paystack;
 
+use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 
 class PaystackServiceProvider extends ServiceProvider
@@ -9,22 +10,21 @@ class PaystackServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('paystack.php'),
             ], 'config');
-
-            // Registering package commands.
-            // $this->commands([]);
         }
+
+        AboutCommand::add('paystack',  fn() => ['Version' => '1.0.2']);
     }
 
     /**
      * Register the application services.
      */
-    public function register()
+    public function register(): void
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'paystack');

@@ -2,7 +2,7 @@
 
 namespace Iamolayemi\Paystack\Endpoints;
 
-class TransferRecipent extends Endpoint
+class TransferRecipient extends Endpoint
 {
     protected const ENDPOINT = '/transferrecipient';
 
@@ -10,7 +10,7 @@ class TransferRecipent extends Endpoint
      * Creates a new recipient.
      *
      * @param array $payload
-     * @return TransferRecipent
+     * @return TransferRecipient
      * @link https://paystack.com/docs/api/#transfer-recipient-create
      */
     public function create(array $payload): self
@@ -23,7 +23,7 @@ class TransferRecipent extends Endpoint
      * Creates a new recipient.
      *
      * @param array $payload
-     * @return TransferRecipent
+     * @return TransferRecipient
      * @link https://paystack.com/docs/api/#transfer-recipient-bulk
      */
     public function createBulk(array $payload): self
@@ -36,7 +36,7 @@ class TransferRecipent extends Endpoint
      * List transfer recipients available on your integration.
      *
      * @param array $query
-     * @return TransferRecipent
+     * @return TransferRecipient
      * @link https://paystack.com/docs/api/#transfer-recipient-list
      */
     public function list(array $query = []): self
@@ -49,7 +49,7 @@ class TransferRecipent extends Endpoint
      * Fetch the details of a transfer recipient.
      *
      * @param string $customer_email
-     * @return TransferRecipent
+     * @return TransferRecipient
      * @link https://paystack.com/docs/api/#transfer-recipient-fetch
      */
     public function fetch(string $customer_email): self
@@ -63,7 +63,7 @@ class TransferRecipent extends Endpoint
      *
      * @param string $recipient_code
      * @param array $payload
-     * @return TransferRecipent
+     * @return TransferRecipient
      * @link https://paystack.com/docs/api/#transfer-recipient-update
      */
     public function update(string $recipient_code, array $payload = []): self
@@ -76,7 +76,7 @@ class TransferRecipent extends Endpoint
      * Deletes a transfer recipient (sets the transfer recipient to inactive).
      *
      * @param string $recipient_code
-     * @return TransferRecipent
+     * @return TransferRecipient
      * @link https://paystack.com/docs/api/#transfer-recipient-delete
      */
     public function deactivate(string $recipient_code): self

@@ -1,6 +1,6 @@
 {
     "name": "iamolayemi/laravel-paystack",
-    "description": "",
+    "description": "A laravel package for working with paystack api",
     "keywords": [
         "paystack",
         "laravel"

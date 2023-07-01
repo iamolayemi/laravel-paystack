@@ -19,7 +19,7 @@ use Iamolayemi\Paystack\Endpoints\SubAccount;
 use Iamolayemi\Paystack\Endpoints\Subscription;
 use Iamolayemi\Paystack\Endpoints\Transaction;
 use Iamolayemi\Paystack\Endpoints\Transfer;
-use Iamolayemi\Paystack\Endpoints\TransferRecipent;
+use Iamolayemi\Paystack\Endpoints\TransferRecipient;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
@@ -173,13 +173,13 @@ class Paystack
     }
 
     /**
-     * Create a new TransferRecipent instance.
+     * Create a new TransferRecipient instance.
      *
      * @throws \Exception
      */
-    public function recipent(): TransferRecipent
+    public function recipient(): TransferRecipient
     {
-        return new TransferRecipent($this);
+        return new TransferRecipient($this);
     }
 
     /**
@@ -203,7 +203,7 @@ class Paystack
     }
 
     /**
-     * Create a new Settlemenr instance.
+     * Create a new Settlement instance.
      *
      * @throws \Exception
      */
@@ -261,9 +261,4 @@ class Paystack
     {
         return new Transfer($this);
     }
-
-    /**
-     * TODO
-     * write test for  Page, Settlement, Resolve
-     */
 }
