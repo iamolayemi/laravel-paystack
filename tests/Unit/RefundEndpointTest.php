@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class RefundEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class RefundEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,8 +30,8 @@ class RefundEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Refund created", $response['message']);
-        $this->assertEquals("x7g15k5iye", $response['data']['transaction']['reference']);
+        $this->assertEquals('Refund created', $response['message']);
+        $this->assertEquals('x7g15k5iye', $response['data']['transaction']['reference']);
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class RefundEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -69,7 +69,7 @@ class RefundEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -80,5 +80,4 @@ class RefundEndpointTest extends TestCase
         $this->assertTrue($response['status']);
         $this->assertEquals('Refund retrieved', $response['message']);
     }
-
 }

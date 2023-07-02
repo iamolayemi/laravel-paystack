@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class TransferRecipientTest extends TestCase
 {
@@ -21,7 +21,7 @@ class TransferRecipientTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,9 +30,9 @@ class TransferRecipientTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Recipient created", $response['message']);
-        $this->assertArrayHasKey("recipient_code", $response['data']);
-        $this->assertEquals("0100000010", $response['data']['details']['account_number']);
+        $this->assertEquals('Recipient created', $response['message']);
+        $this->assertArrayHasKey('recipient_code', $response['data']);
+        $this->assertEquals('0100000010', $response['data']['details']['account_number']);
     }
 
     /** @test */
@@ -46,7 +46,7 @@ class TransferRecipientTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -55,7 +55,7 @@ class TransferRecipientTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Recipients added successfully", $response['message']);
+        $this->assertEquals('Recipients added successfully', $response['message']);
         $this->assertIsArray($response['data']);
     }
 
@@ -70,7 +70,7 @@ class TransferRecipientTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -94,7 +94,7 @@ class TransferRecipientTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -118,7 +118,7 @@ class TransferRecipientTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -127,7 +127,7 @@ class TransferRecipientTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Recipient updated", $response['message']);
+        $this->assertEquals('Recipient updated', $response['message']);
         $this->assertEquals(self::RECIPIENT_CODE, $response['data']['recipient_code']);
     }
 
@@ -142,16 +142,14 @@ class TransferRecipientTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
         $response = Paystack::recipient()->deactivate(self::RECIPIENT_CODE)->response();
 
-
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Transfer recipient set as inactive", $response['message']);
+        $this->assertEquals('Transfer recipient set as inactive', $response['message']);
     }
-
 }

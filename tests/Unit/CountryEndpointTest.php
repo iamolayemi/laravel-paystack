@@ -2,13 +2,12 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class CountryEndpointTest extends TestCase
 {
-
     /** @test */
     public function it_returns_a_list_of_countries()
     {
@@ -20,7 +19,7 @@ class CountryEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -44,7 +43,7 @@ class CountryEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -56,5 +55,4 @@ class CountryEndpointTest extends TestCase
         $this->assertEquals('States retrieved', $response['message']);
         $this->assertIsArray($response['data']);
     }
-
 }

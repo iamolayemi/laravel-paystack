@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class PlanEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class PlanEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,8 +30,8 @@ class PlanEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Plan created", $response['message']);
-        $this->assertEquals("Monthly retainer", $response['data']['name']);
+        $this->assertEquals('Plan created', $response['message']);
+        $this->assertEquals('Monthly retainer', $response['data']['name']);
         $this->assertEquals(500000, $response['data']['amount']);
     }
 
@@ -46,7 +46,7 @@ class PlanEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -70,7 +70,7 @@ class PlanEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -94,7 +94,7 @@ class PlanEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -103,7 +103,6 @@ class PlanEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Plan updated. 1 subscription(s) affected", $response['message']);
-     }
-
-   }
+        $this->assertEquals('Plan updated. 1 subscription(s) affected', $response['message']);
+    }
+}

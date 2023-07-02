@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class SubscriptionEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class SubscriptionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,8 +30,8 @@ class SubscriptionEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subscription successfully created", $response['message']);
-        $this->assertEquals("SUB_vsyqdmlzble3uii", $response['data']['subscription_code']);
+        $this->assertEquals('Subscription successfully created', $response['message']);
+        $this->assertEquals('SUB_vsyqdmlzble3uii', $response['data']['subscription_code']);
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class SubscriptionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -69,7 +69,7 @@ class SubscriptionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -93,7 +93,7 @@ class SubscriptionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -102,9 +102,8 @@ class SubscriptionEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subscription enabled successfully", $response['message']);
+        $this->assertEquals('Subscription enabled successfully', $response['message']);
     }
-
 
     /** @test */
     public function a_subscription_can_be_disabled()
@@ -117,7 +116,7 @@ class SubscriptionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -126,6 +125,6 @@ class SubscriptionEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subscription disabled successfully", $response['message']);
+        $this->assertEquals('Subscription disabled successfully', $response['message']);
     }
 }

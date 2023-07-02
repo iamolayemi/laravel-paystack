@@ -2,14 +2,14 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class TransferEndpointTest extends TestCase
 {
-
     private const TRANSFER_CODE = 'TRF_1ptvuv321ahaa7q';
+
     private const TRANSFER_REFERENCE = 'ref_demo';
 
     /** @test */
@@ -23,7 +23,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -32,7 +32,7 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Transfer requires OTP to continue", $response['message']);
+        $this->assertEquals('Transfer requires OTP to continue', $response['message']);
         $this->assertEquals(self::TRANSFER_CODE, $response['data']['transfer_code']);
     }
 
@@ -47,7 +47,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -56,7 +56,7 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Transfer has been queued", $response['message']);
+        $this->assertEquals('Transfer has been queued', $response['message']);
         $this->assertEquals(self::TRANSFER_CODE, $response['data']['transfer_code']);
     }
 
@@ -71,7 +71,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -80,10 +80,9 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("2 transfers queued.", $response['message']);
+        $this->assertEquals('2 transfers queued.', $response['message']);
         $this->assertIsArray($response['data']);
     }
-
 
     /** @test */
     public function it_returns_a_list_of_transfers()
@@ -96,7 +95,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -120,7 +119,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -144,7 +143,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -153,7 +152,7 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Transfer retrieved", $response['message']);
+        $this->assertEquals('Transfer retrieved', $response['message']);
         $this->assertEquals(self::TRANSFER_REFERENCE, $response['data']['reference']);
         $this->assertEquals('success', $response['data']['status']);
     }
@@ -169,7 +168,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -178,7 +177,7 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("OTP has been resent", $response['message']);
+        $this->assertEquals('OTP has been resent', $response['message']);
     }
 
     /** @test */
@@ -192,7 +191,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -201,7 +200,7 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("OTP has been sent to mobile number ending with 4321", $response['message']);
+        $this->assertEquals('OTP has been sent to mobile number ending with 4321', $response['message']);
     }
 
     /** @test */
@@ -215,7 +214,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -224,7 +223,7 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("OTP requirement for transfers has been disabled", $response['message']);
+        $this->assertEquals('OTP requirement for transfers has been disabled', $response['message']);
     }
 
     /** @test */
@@ -238,7 +237,7 @@ class TransferEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -247,6 +246,6 @@ class TransferEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("OTP requirement for transfers has been enabled", $response['message']);
+        $this->assertEquals('OTP requirement for transfers has been enabled', $response['message']);
     }
 }

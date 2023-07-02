@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class SubAccountEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class SubAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,9 +30,9 @@ class SubAccountEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subaccount created", $response['message']);
-        $this->assertEquals("Sunshine Studios", $response['data']['business_name']);
-        $this->assertEquals("0193274682", $response['data']['account_number']);
+        $this->assertEquals('Subaccount created', $response['message']);
+        $this->assertEquals('Sunshine Studios', $response['data']['business_name']);
+        $this->assertEquals('0193274682', $response['data']['account_number']);
 
     }
 
@@ -47,7 +47,7 @@ class SubAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -71,7 +71,7 @@ class SubAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -95,7 +95,7 @@ class SubAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -104,8 +104,7 @@ class SubAccountEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subaccount updated", $response['message']);
+        $this->assertEquals('Subaccount updated', $response['message']);
         $this->assertEquals(self::SUBACCOUNT_ID, $response['data']['id']);
     }
-
-   }
+}

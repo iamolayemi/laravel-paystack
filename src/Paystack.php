@@ -25,19 +25,12 @@ use Illuminate\Support\Facades\Http;
 
 class Paystack
 {
-    /**
-     * @var string
-     */
     protected string $secretKey;
 
-    /**
-     * @var PendingRequest|null
-     */
     private ?PendingRequest $connection = null;
 
     /**
      * Paystack constructor.
-     * @param string $secretKey
      */
     public function __construct(string $secretKey)
     {
@@ -50,18 +43,11 @@ class Paystack
         $this->secretKey = $secretKey;
     }
 
-
-    /**
-     * @return void
-     */
     private function connect(): void
     {
         $this->connection = Http::withToken($this->secretKey);
     }
 
-    /**
-     * @return PendingRequest|null
-     */
     public function getConnection(): ?PendingRequest
     {
         return $this->connection;
@@ -69,17 +55,14 @@ class Paystack
 
     /**
      * Generates a unique reference
-     *
-     * @param  String|null  $transactionPrefix
-     * @return string
      */
-
-    public function generateReference(String $transactionPrefix = NULL): string
+    public function generateReference(string $transactionPrefix = null): string
     {
         if ($transactionPrefix) {
-            return $transactionPrefix . '_' . uniqid(time());
+            return $transactionPrefix.'_'.uniqid(time());
         }
-        return 'PK_' . uniqid(time());
+
+        return 'PK_'.uniqid(time());
     }
 
     /**
