@@ -19,7 +19,7 @@ class Balance extends Endpoint
     }
 
     /**
-     * Fetch all pay-ins and pay-outs that occured on your integration.
+     * Fetch all pay-ins and pay-outs that occurred on your integration.
      *
      * @return Balance
      * @link https://paystack.com/docs/api/#transfer-control-balance-ledger

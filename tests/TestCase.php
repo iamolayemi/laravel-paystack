@@ -33,4 +33,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'Paystack' => Paystack::class
         ];
     }
+
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     * @return void
+     */
+    public function getEnvironmentSetUp($app): void
+    {
+        config()->set('paystack.secret_key', 'sk_test_**********');
+    }
 }
