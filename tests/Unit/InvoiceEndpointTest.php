@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class InvoiceEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,7 +30,7 @@ class InvoiceEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Payment request created", $response['message']);
+        $this->assertEquals('Payment request created', $response['message']);
     }
 
     /** @test */
@@ -44,7 +44,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -68,7 +68,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -92,7 +92,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -116,7 +116,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -125,7 +125,7 @@ class InvoiceEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Notification sent", $response['message']);
+        $this->assertEquals('Notification sent', $response['message']);
     }
 
     /** @test */
@@ -139,7 +139,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -148,7 +148,7 @@ class InvoiceEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Payment request totals", $response['message']);
+        $this->assertEquals('Payment request totals', $response['message']);
         $this->assertIsArray($response['data']);
     }
 
@@ -163,7 +163,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -172,7 +172,7 @@ class InvoiceEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Payment request finalized", $response['message']);
+        $this->assertEquals('Payment request finalized', $response['message']);
         $this->assertEquals(self::INVOICE_ID, $response['data']['id']);
     }
 
@@ -187,7 +187,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -196,7 +196,7 @@ class InvoiceEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Payment request updated", $response['message']);
+        $this->assertEquals('Payment request updated', $response['message']);
     }
 
     /** @test */
@@ -210,7 +210,7 @@ class InvoiceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -219,7 +219,6 @@ class InvoiceEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Payment request has been archived", $response['message']);
+        $this->assertEquals('Payment request has been archived', $response['message']);
     }
-
 }

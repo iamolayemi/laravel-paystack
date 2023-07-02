@@ -2,13 +2,12 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class BalanceEndpointTest extends TestCase
 {
-
     /** @test */
     public function it_returns_account_balances()
     {
@@ -20,7 +19,7 @@ class BalanceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -44,7 +43,7 @@ class BalanceEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -56,5 +55,4 @@ class BalanceEndpointTest extends TestCase
         $this->assertEquals('Balance ledger retrieved', $response['message']);
         $this->assertIsArray($response['data']);
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists("paystack")) {
+if (! function_exists('paystack')) {
     /**
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */

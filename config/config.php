@@ -22,29 +22,29 @@ return [
 
     'secret_key' => env('PAYSTACK_SECRET_KEY', 'sk_*'),
 
-//    /*
-//    |--------------------------------------------------------------------------
-//    | Callback URL - Optional
-//    |--------------------------------------------------------------------------
-//    |
-//    | This should correspond to the callback URL set in your Paystack dashboard:
-//    | https://dashboard.paystack.com/#/settings/developer.
-//    |
-//    | Remember to also add this as an exception in your VerifyCsrfToken middleware.
-//    |
-//    */
-//    'callback_url' => env('PAYSTACK_CALLBACK_URL', 'https://example.com'),
-//
-//    /*
-//    |--------------------------------------------------------------------------
-//    | Webhooks URL
-//    |--------------------------------------------------------------------------
-//    |
-//    | This should correspond to the webhooks URL set in your Paystack dashboard:
-//    | https://dashboard.paystack.com/#/settings/developer.
-//    |
-//    | Remember to also add this as an exception in your VerifyCsrfToken middleware.
-//    |
-//    */
-//    'webhook_url' => env('PAYSTACK_WEBHOOK_URL', 'https://example.com'),
+    //    /*
+    //    |--------------------------------------------------------------------------
+    //    | Callback URL - Optional
+    //    |--------------------------------------------------------------------------
+    //    |
+    //    | This should correspond to the callback URL set in your Paystack dashboard:
+    //    | https://dashboard.paystack.com/#/settings/developer.
+    //    |
+    //    | Remember to also add this as an exception in your VerifyCsrfToken middleware.
+    //    |
+    //    */
+    //    'callback_url' => env('PAYSTACK_CALLBACK_URL', 'https://example.com'),
+    //
+    //    /*
+    //    |--------------------------------------------------------------------------
+    //    | Webhooks URL
+    //    |--------------------------------------------------------------------------
+    //    |
+    //    | This should correspond to the webhooks URL set in your Paystack dashboard:
+    //    | https://dashboard.paystack.com/#/settings/developer.
+    //    |
+    //    | Remember to also add this as an exception in your VerifyCsrfToken middleware.
+    //    |
+    //    */
+    //    'webhook_url' => env('PAYSTACK_WEBHOOK_URL', 'https://example.com'),
 ];

@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class ProductEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class ProductEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -30,8 +30,8 @@ class ProductEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Product successfully created", $response['message']);
-        $this->assertEquals("Product One", $response['data']['name']);
+        $this->assertEquals('Product successfully created', $response['message']);
+        $this->assertEquals('Product One', $response['data']['name']);
         $this->assertEquals(500000, $response['data']['price']);
     }
 
@@ -46,7 +46,7 @@ class ProductEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -70,7 +70,7 @@ class ProductEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -94,7 +94,7 @@ class ProductEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -103,8 +103,7 @@ class ProductEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Product successfully updated", $response['message']);
+        $this->assertEquals('Product successfully updated', $response['message']);
         $this->assertEquals(self::PRODUCT_ID, $response['data']['id']);
     }
-
-   }
+}

@@ -2,13 +2,14 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class CustomerEndpointTest extends TestCase
 {
     private const CUSTOMER_EMAIL = 'bojack@horsinaround.com';
+
     private const CUSTOMER_CODE = 'CUS_xnxdt6s1zg1f4nx';
 
     /** @test */
@@ -22,7 +23,7 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -31,8 +32,8 @@ class CustomerEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Customer created", $response['message']);
-        $this->assertEquals("customer@email.com", $response['data']['email']);
+        $this->assertEquals('Customer created', $response['message']);
+        $this->assertEquals('customer@email.com', $response['data']['email']);
     }
 
     /** @test */
@@ -46,7 +47,7 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -70,7 +71,7 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -94,7 +95,7 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -103,7 +104,7 @@ class CustomerEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Customer updated", $response['message']);
+        $this->assertEquals('Customer updated', $response['message']);
         $this->assertEquals(self::CUSTOMER_CODE, $response['data']['customer_code']);
 
     }
@@ -119,7 +120,7 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -127,7 +128,7 @@ class CustomerEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Customer Identification in progress", $response['message']);
+        $this->assertEquals('Customer Identification in progress', $response['message']);
     }
 
     /** @test */
@@ -141,16 +142,15 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
         $response = Paystack::customer()->whitelist([])->response();
 
-
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Customer updated", $response['message']);
+        $this->assertEquals('Customer updated', $response['message']);
     }
 
     /** @test */
@@ -164,7 +164,7 @@ class CustomerEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -172,6 +172,6 @@ class CustomerEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Authorization has been deactivated", $response['message']);
+        $this->assertEquals('Authorization has been deactivated', $response['message']);
     }
 }

@@ -13,7 +13,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return string[]
      */
     protected function getPackageProviders($app): array
@@ -24,19 +24,18 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return string[]
      */
     protected function getPackageAliases($app): array
     {
         return [
-            'Paystack' => Paystack::class
+            'Paystack' => Paystack::class,
         ];
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
-     * @return void
+     * @param  \Illuminate\Foundation\Application  $app
      */
     public function getEnvironmentSetUp($app): void
     {
