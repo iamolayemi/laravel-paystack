@@ -17,8 +17,6 @@ class PaystackServiceProvider extends ServiceProvider
                 __DIR__.'/../config/config.php' => config_path('paystack.php'),
             ], 'config');
         }
-
-        AboutCommand::add('paystack',  fn() => ['Version' => '1.0.2']);
     }
 
     /**
