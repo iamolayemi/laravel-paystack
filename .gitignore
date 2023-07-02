@@ -1,8 +1,8 @@
 /vendor
 .phpunit.result.cache
+.phpunit.cache
 /.idea
 /.vscode
 build
 coverage
-composer.lock
 testbench.yaml
