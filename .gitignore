@@ -1,6 +1,6 @@
 /vendor
 .phpunit.result.cache
-.phpunit.cache
+/.phpunit.cache
 /.idea
 /.vscode
 build
