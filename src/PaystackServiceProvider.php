@@ -2,7 +2,6 @@
 
 namespace Iamolayemi\Paystack;
 
-use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 
 class PaystackServiceProvider extends ServiceProvider
