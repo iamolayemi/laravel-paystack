@@ -2,3 +2,7 @@
 .phpunit.result.cache
 /.idea
 /.vscode
+build
+coverage
+composer.lock
+testbench.yaml

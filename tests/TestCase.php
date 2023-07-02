@@ -25,20 +25,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     /**
      * @param  \Illuminate\Foundation\Application  $app
-     * @return string[]
+     * @return array<string, class-string<\Illuminate\Support\Facades\Facade>>
      */
     protected function getPackageAliases($app): array
     {
         return [
             'Paystack' => Paystack::class,
         ];
-    }
-
-    /**
-     * @param  \Illuminate\Foundation\Application  $app
-     */
-    public function getEnvironmentSetUp($app): void
-    {
-        config()->set('paystack.secret_key', 'sk_test_**********');
     }
 }

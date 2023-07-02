@@ -9,10 +9,10 @@ class Paystack extends Facade
     /**
      * Get the registered name of the component.
      *
-     * @see \Iamolayemi\Paystack\Paystack
+     * @see string
      */
     protected static function getFacadeAccessor(): string
     {
-        return \Iamolayemi\Paystack\Paystack::class;
+        return 'paystack';
     }
 }
