@@ -2,7 +2,6 @@
 
 namespace Iamolayemi\Paystack;
 
-use Illuminate\Foundation\Console\AboutCommand;
 use Illuminate\Support\ServiceProvider;
 
 class PaystackServiceProvider extends ServiceProvider
@@ -28,7 +27,7 @@ class PaystackServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'paystack');
 
         // Register the main class to use with the facade
-        $this->app->singleton('paystack', function () {
+        $this->app->bind('paystack', function () {
             return new Paystack(config('paystack.secret_key'));
         });
     }
