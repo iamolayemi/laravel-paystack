@@ -18,7 +18,7 @@ class PaystackServiceProvider extends ServiceProvider
             ], 'config');
         }
 
-        AboutCommand::add('paystack',  fn() => ['Version' => '1.0.2']);
+        AboutCommand::add('paystack', fn () => ['Version' => '1.0.2']);
     }
 
     /**

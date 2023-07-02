@@ -2,13 +2,12 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class DedicateAccountEndpointTest extends TestCase
 {
-
     private const ACCOUNT_ID = 59;
 
     /** @test */
@@ -22,19 +21,17 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
-
 
         $response = Paystack::dedicatedAccount()
             ->create([])->response();
 
-
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("NUBAN successfully created", $response['message']);
-        $this->assertEquals("9930000737", $response['data']['account_number']);
+        $this->assertEquals('NUBAN successfully created', $response['message']);
+        $this->assertEquals('9930000737', $response['data']['account_number']);
     }
 
     /** @test */
@@ -48,7 +45,7 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -72,7 +69,7 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -96,7 +93,7 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -105,7 +102,7 @@ class DedicateAccountEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Managed Account Successfully Unassigned", $response['message']);
+        $this->assertEquals('Managed Account Successfully Unassigned', $response['message']);
         $this->assertEquals(self::ACCOUNT_ID, $response['data']['id']);
     }
 
@@ -122,18 +119,16 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
-
 
         $response = Paystack::dedicatedAccount()
             ->addSplit([])->response();
 
-
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Assigned Managed Account Successfully Created", $response['message']);
+        $this->assertEquals('Assigned Managed Account Successfully Created', $response['message']);
         $this->assertEquals(self::ACCOUNT_ID, $response['data']['id']);
     }
 
@@ -148,7 +143,7 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -172,7 +167,7 @@ class DedicateAccountEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -184,5 +179,4 @@ class DedicateAccountEndpointTest extends TestCase
         $this->assertEquals('Dedicated account providers retrieved', $response['message']);
         $this->assertIsArray($response['data']);
     }
-
 }

@@ -2,13 +2,14 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class TransactionEndpointTest extends TestCase
 {
     protected const TRANSACTION_REFERENCE = 'DG4uishudoq90LD';
+
     protected const TRANSACTION_ID = '292584114';
 
     /** @test */
@@ -22,7 +23,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -31,7 +32,7 @@ class TransactionEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Authorization URL created", $response['message']);
+        $this->assertEquals('Authorization URL created', $response['message']);
         $this->assertArrayHasKey('authorization_url', $response['data']);
     }
 
@@ -46,16 +47,15 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
         $response = Paystack::transaction()->verify(self::TRANSACTION_REFERENCE)->response();
 
-
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Verification successful", $response['message']);
+        $this->assertEquals('Verification successful', $response['message']);
     }
 
     /** @test */
@@ -69,7 +69,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -92,7 +92,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
         $response = Paystack::transaction()
@@ -115,7 +115,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -139,7 +139,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
         $response = Paystack::transaction()
@@ -149,7 +149,6 @@ class TransactionEndpointTest extends TestCase
         $this->assertTrue($response['status']);
         $this->assertEquals('Authorization is valid for this amount', $response['message']);
     }
-
 
     /** @test */
     public function it_returns_transaction_timeline()
@@ -162,7 +161,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -185,7 +184,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -198,7 +197,6 @@ class TransactionEndpointTest extends TestCase
         $this->assertIsArray($response['data']);
     }
 
-
     /** @test */
     public function all_transactions_can_be_exported()
     {
@@ -210,7 +208,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
         $response = Paystack::transaction()
@@ -233,7 +231,7 @@ class TransactionEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
