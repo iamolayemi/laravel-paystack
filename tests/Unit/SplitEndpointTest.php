@@ -2,9 +2,9 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class SplitEndpointTest extends TestCase
 {
@@ -21,7 +21,7 @@ class SplitEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -31,7 +31,7 @@ class SplitEndpointTest extends TestCase
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
         $this->assertIsArray($response['data']);
-        $this->assertEquals("Split created", $response['message']);
+        $this->assertEquals('Split created', $response['message']);
     }
 
     /** @test */
@@ -45,7 +45,7 @@ class SplitEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -54,8 +54,8 @@ class SplitEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Split retrieved", $response['message']);
-        $this->assertEquals("SPL_UO2vBzEqHW", $response['data'][0]['split_code']);
+        $this->assertEquals('Split retrieved', $response['message']);
+        $this->assertEquals('SPL_UO2vBzEqHW', $response['data'][0]['split_code']);
     }
 
     /** @test */
@@ -69,7 +69,7 @@ class SplitEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -78,7 +78,7 @@ class SplitEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Split retrieved", $response['message']);
+        $this->assertEquals('Split retrieved', $response['message']);
         $this->assertEquals(self::SPLIT_ID, $response['data']['id']);
     }
 
@@ -93,7 +93,7 @@ class SplitEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -102,7 +102,7 @@ class SplitEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Split group updated", $response['message']);
+        $this->assertEquals('Split group updated', $response['message']);
         $this->assertEquals(self::SPLIT_ID, $response['data']['id']);
     }
 
@@ -117,7 +117,7 @@ class SplitEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -126,7 +126,7 @@ class SplitEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subaccount added", $response['message']);
+        $this->assertEquals('Subaccount added', $response['message']);
         $this->assertEquals(self::SPLIT_ID, $response['data']['id']);
     }
 
@@ -141,7 +141,7 @@ class SplitEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 
@@ -150,6 +150,6 @@ class SplitEndpointTest extends TestCase
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
-        $this->assertEquals("Subaccount removed", $response['message']);
+        $this->assertEquals('Subaccount removed', $response['message']);
     }
 }

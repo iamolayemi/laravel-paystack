@@ -2,13 +2,12 @@
 
 namespace Iamolayemi\Paystack\Tests\Unit;
 
+use Iamolayemi\Paystack\Facades\Paystack;
 use Iamolayemi\Paystack\Tests\TestCase;
 use Illuminate\Support\Facades\Http;
-use Iamolayemi\Paystack\Facades\Paystack;
 
 class BankEndpointTest extends TestCase
 {
-
     /** @test */
     public function it_returns_a_list_of_banks()
     {
@@ -20,7 +19,7 @@ class BankEndpointTest extends TestCase
                         true
                     ),
                     200, ['Headers']
-                )
+                ),
             ]
         );
 

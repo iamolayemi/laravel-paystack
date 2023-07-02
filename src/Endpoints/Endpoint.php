@@ -10,18 +10,11 @@ class Endpoint
 {
     protected const BASE_URL = 'https://api.paystack.co';
 
-    /**
-     * @var Paystack
-     */
     public Paystack $paystack;
 
-    /**
-     * @var Response|null
-     */
     protected ?Response $response = null;
 
     /**
-     * @param Paystack $paystack
      * @throws Exception
      */
     public function __construct(Paystack $paystack)
@@ -29,14 +22,12 @@ class Endpoint
         $this->paystack = $paystack;
 
         if ($this->paystack->getConnection() === null) {
-            throw new Exception("Connection could not be established.");
+            throw new Exception('Connection could not be established.');
         }
     }
 
     /**
      * Return the data from http request.
-     *
-     * @return array
      */
     public function data(): array
     {
@@ -46,33 +37,26 @@ class Endpoint
     /**
      * Return the response from http request.
      *
-     * @param string $key
      * @return array
      */
     public function response(string $key = ''): ?array
     {
-        if (!empty($key)) {
+        if (! empty($key)) {
             return $this->response->json($key);
         } else {
             return $this->response->json();
         }
     }
 
-    /**
-     * @param string $endpoint
-     * @return string
-     */
     protected function url(string $endpoint): string
     {
-        return Endpoint::BASE_URL . "$endpoint";
+        return Endpoint::BASE_URL."$endpoint";
     }
 
     /**
      *  * Make a http get request
      *
-     * @param string $url
-     * @param array|string|null $query
-     * @return Endpoint
+     * @param  array|string|null  $query
      */
     protected function get(string $url, $query = []): self
     {
@@ -85,10 +69,6 @@ class Endpoint
 
     /**
      * Make a http post request
-     *
-     * @param string $url
-     * @param array $payload
-     * @return Endpoint
      */
     protected function post(string $url, array $payload = []): self
     {
@@ -101,10 +81,6 @@ class Endpoint
 
     /**
      * Make a http put request
-     *
-     * @param string $url
-     * @param array $payload
-     * @return Endpoint
      */
     protected function put(string $url, array $payload = []): self
     {
@@ -117,10 +93,6 @@ class Endpoint
 
     /**
      * Make a http put request
-     *
-     * @param string $url
-     * @param array $payload
-     * @return Endpoint
      */
     protected function delete(string $url, array $payload = []): self
     {
