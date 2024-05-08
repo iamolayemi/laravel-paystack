@@ -41,12 +41,10 @@ class PaystackServiceProvider extends ServiceProvider
         });
     }
 
-
     private function validator()
     {
         Validator::macro('required_string', function ($attribute, $value, $arguments) {
-            return is_string($value) && !empty($value);
+            return is_string($value) && ! empty($value);
         });
     }
-
 }

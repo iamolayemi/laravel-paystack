@@ -56,7 +56,7 @@ class Paystack
     /**
      * Generates a unique reference
      */
-    public function generateReference(string $transactionPrefix = null): string
+    public function generateReference(?string $transactionPrefix = null): string
     {
         if ($transactionPrefix) {
             return $transactionPrefix.'_'.uniqid(time());
