@@ -31,7 +31,7 @@ class PaystackServiceProvider extends ServiceProvider
         // Register the main class to use with the facade
         $this->app->bind('paystack', function () {
 
-            //validate required credentials
+            // validate required credentials
             $config = config('paystack');
             Validator::make($config, [
                 'secret_key' => 'required|string',
@@ -41,12 +41,10 @@ class PaystackServiceProvider extends ServiceProvider
         });
     }
 
-
     private function validator()
     {
         Validator::macro('required_string', function ($attribute, $value, $arguments) {
-            return is_string($value) && !empty($value);
+            return is_string($value) && ! empty($value);
         });
     }
-
 }
