@@ -13,11 +13,15 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function a_dedicated_account_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/create_dedicated_account.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/create_dedicated_account.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/dedicated_account' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/dedicatedaccount/create_dedicated_account.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -37,11 +41,15 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_dedicated_accounts()
     {
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/list_dedicated_accounts.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/list_dedicated_accounts.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/dedicated_account' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/dedicatedaccount/list_dedicated_accounts.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -61,17 +69,19 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_dedicatedaccount()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/dedicated_account/59' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/dedicatedaccount/fetch_dedicated_account.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/fetch_dedicated_account.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/fetch_dedicated_account.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/dedicated_account/59' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::dedicatedaccount()
             ->fetch(self::ACCOUNT_ID)->response();
@@ -85,17 +95,19 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function a_dedicatedaccount_can_be_deactivated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/dedicated_account/59' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/dedicatedaccount/deactivate_dedicated_account.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/deactivate_dedicated_account.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/deactivate_dedicated_account.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/dedicated_account/59' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::dedicatedaccount()
             ->deactivate(self::ACCOUNT_ID, [])->response();
@@ -109,13 +121,15 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function a_split_dedicated_transaction_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/create_split_transaction_account.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/create_split_transaction_account.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/dedicated_account/split' => Http::response(
                     json_decode(
-                        file_get_contents(
-                            'tests/stubs/endpoints/dedicatedaccount/create_split_transaction_account.json'
-                        ),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -135,11 +149,15 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function a_split_dedicated_transaction_can_be_deleted()
     {
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/delete_split_transaction_account.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/delete_split_transaction_account.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/dedicated_account/split' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/dedicatedaccount/delete_split_transaction_account.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -159,11 +177,15 @@ class DedicateAccountEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_bank_providers()
     {
+        $json = file_get_contents('tests/stubs/endpoints/dedicatedaccount/list_account_providers.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/dedicatedaccount/list_account_providers.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/dedicated_account/available_providers' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/dedicatedaccount/list_account_providers.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']

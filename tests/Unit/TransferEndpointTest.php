@@ -15,17 +15,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_transfer_can_be_initiated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/initiate_transfer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/initiate_transfer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/initiate_transfer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->initiate([])->response();
@@ -39,17 +41,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_transfer_can_be_finalized()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/finalize_transfer' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/finalize_transfer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/finalize_transfer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/finalize_transfer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/finalize_transfer' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->finalize([])->response();
@@ -63,17 +67,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_bulk_transfer_can_be_initiated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/bulk' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/initiate_bulk_transfer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/initiate_bulk_transfer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/initiate_bulk_transfer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/bulk' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->bulk([])->response();
@@ -87,17 +93,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_transfers()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/list_transfers.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/list_transfers.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/list_transfers.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->list()->response();
@@ -111,17 +119,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_transfer()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/TRF_1ptvuv321ahaa7q' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/fetch_transfer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/fetch_transfer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/fetch_transfer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/TRF_1ptvuv321ahaa7q' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->fetch(self::TRANSFER_CODE)->response();
@@ -135,17 +145,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_transfer_can_be_verified()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/verify/ref_demo' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/verify_transfer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/verify_transfer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/verify_transfer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/verify/ref_demo' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->verify(self::TRANSFER_REFERENCE)->response();
@@ -160,17 +172,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_transfer_otp_can_be_resend()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/resend_otp' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/resend_otp.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/resend_otp.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/resend_otp.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/resend_otp' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->resendOtp([])->response();
@@ -183,20 +197,22 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function transfer_otp_can_be_disabled()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/disable_otp' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/disable_otp.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/disable_otp.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/disable_otp.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/disable_otp' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
-            ->disableOtp()->response();
+            ->disableOtp([])->response();
 
         Http::assertSentCount(1);
         $this->assertTrue($response['status']);
@@ -206,17 +222,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_transfer_can_otp_has_been_disabled()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/disable_otp_finalize' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/disable_otp_finalize.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/disable_otp_finalize.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/disable_otp_finalize.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/disable_otp_finalize' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->disableOtpFinalize([])->response();
@@ -229,17 +247,19 @@ class TransferEndpointTest extends TestCase
     /** @test */
     public function a_transfer_can_be_enabled()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transfer/enable_otp' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transfer/enable_otp.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transfer/enable_otp.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transfer/enable_otp.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transfer/enable_otp' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transfer()
             ->enableOTP()->response();

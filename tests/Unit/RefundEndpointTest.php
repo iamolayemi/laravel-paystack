@@ -13,11 +13,15 @@ class RefundEndpointTest extends TestCase
     /** @test */
     public function a_refund_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/refund/create_refund.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/refund/create_refund.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/refund' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/refund/create_refund.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -37,11 +41,15 @@ class RefundEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_refunds()
     {
+        $json = file_get_contents('tests/stubs/endpoints/refund/list_refunds.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/refund/list_refunds.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/refund' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/refund/list_refunds.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -61,11 +69,15 @@ class RefundEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_refund()
     {
+        $json = file_get_contents('tests/stubs/endpoints/refund/fetch_refund.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/refund/fetch_refund.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/refund/x7g15k5iye' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/refund/fetch_refund.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']

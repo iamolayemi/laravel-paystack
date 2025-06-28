@@ -9,6 +9,8 @@ class Bank extends Endpoint
     /**
      * Get a list of all supported banks and their properties.
      *
+     * @param  array<string, mixed>  $query
+     *
      * @link https://paystack.com/docs/api/#miscellaneous-bank
      */
     public function list(array $query = []): self

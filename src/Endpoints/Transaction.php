@@ -9,6 +9,8 @@ class Transaction extends Endpoint
     /**
      * Initialize a transaction from your backend
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#transaction-initialize
      */
     public function initialize(array $payload): self
@@ -23,7 +25,7 @@ class Transaction extends Endpoint
      */
     public function authorizationURL(): string
     {
-        return $this->response->json('data.authorization_url');
+        return $this->response?->json('data.authorization_url') ?? '';
     }
 
     /**
@@ -46,12 +48,14 @@ class Transaction extends Endpoint
         if (! empty($reference)) {
             return $this->verify($reference)->status();
         } else {
-            return $this->response->json('data.status');
+            return $this->response?->json('data.status') ?? '';
         }
     }
 
     /**
      * List transactions carried out on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#transaction-list
      */
@@ -77,6 +81,8 @@ class Transaction extends Endpoint
     /**
      * Charge a customer user using his authorization code.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#transaction-charge-authorization
      */
     public function chargeAuthorization(array $payload): self
@@ -88,6 +94,8 @@ class Transaction extends Endpoint
 
     /**
      * Check if the authorization code is valid.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#transaction-check-authorization
      */
@@ -113,6 +121,8 @@ class Transaction extends Endpoint
     /**
      * View the timeline of a transaction.
      *
+     * @param  array<string, mixed>  $query
+     *
      * @link https://paystack.com/docs/api/#transaction-totals
      */
     public function totals(array $query = []): self
@@ -124,6 +134,8 @@ class Transaction extends Endpoint
 
     /**
      * List transactions carried out on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#transaction-export
      */
@@ -137,7 +149,9 @@ class Transaction extends Endpoint
     /**
      * Receive part of a payment from a customer.
      *
-     * @link https://paystack.com/docs/api/#transaction-export
+     * @param  array<string, mixed>  $payload
+     *
+     * @link https://paystack.com/docs/api/#transaction-partial-debit
      */
     public function partialDebit(array $payload): self
     {

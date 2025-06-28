@@ -9,6 +9,8 @@ class Split extends Endpoint
     /**
      * Create a split payment on your integration
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#split-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class Split extends Endpoint
 
     /**
      * List/search for the transaction splits available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#split-list
      */
@@ -45,6 +49,8 @@ class Split extends Endpoint
     /**
      * Update a transaction split details on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#split-update
      */
     public function update(string $split_id, array $payload = []): self
@@ -58,6 +64,8 @@ class Split extends Endpoint
      * Add a Subaccount to a Transaction Split,
      * or update the share of an existing Subaccount in a Transaction Split
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#split-add-subaccount
      */
     public function addSubaccount(string $split_id, array $payload = []): self
@@ -69,6 +77,8 @@ class Split extends Endpoint
 
     /**
      * Remove a subaccount from a transaction split.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#split-remove-subaccount
      */

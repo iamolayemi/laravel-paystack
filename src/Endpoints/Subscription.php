@@ -9,6 +9,8 @@ class Subscription extends Endpoint
     /**
      * Create a subscription on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#subscription-create
      */
     public function create(array $payload): self
@@ -21,7 +23,9 @@ class Subscription extends Endpoint
     /**
      * List subscriptions available on your integration.
      *
-     * @link https://paystack.com/docs/api/#suzbscription-list
+     * @param  array<string, mixed>  $query
+     *
+     * @link https://paystack.com/docs/api/#subscription-list
      */
     public function list(array $query = []): self
     {
@@ -35,9 +39,9 @@ class Subscription extends Endpoint
      *
      * @link https://paystack.com/docs/api/#subscription-fetch
      */
-    public function fetch(string $subscription_id): self
+    public function fetch(string $subscription_code): self
     {
-        $this->get($this->url(self::ENDPOINT).'/'.$subscription_id);
+        $this->get($this->url(self::ENDPOINT).'/'.$subscription_code);
 
         return $this;
     }
@@ -45,9 +49,11 @@ class Subscription extends Endpoint
     /**
      * Enable a subscription on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#subscription-enable
      */
-    public function enable(array $payload): self
+    public function enable(array $payload = []): self
     {
         $this->post($this->url(self::ENDPOINT).'/enable', $payload);
 
@@ -57,9 +63,11 @@ class Subscription extends Endpoint
     /**
      * Disable a subscription on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#subscription-disable
      */
-    public function disable(array $payload): self
+    public function disable(array $payload = []): self
     {
         $this->post($this->url(self::ENDPOINT).'/disable', $payload);
 

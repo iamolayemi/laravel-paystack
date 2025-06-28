@@ -9,6 +9,8 @@ class Plan extends Endpoint
     /**
      * Create a plan on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#plan-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class Plan extends Endpoint
 
     /**
      * List plans available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#plan-list
      */
@@ -44,6 +48,8 @@ class Plan extends Endpoint
 
     /**
      * Update a plan details on your integration.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#plan-update
      */

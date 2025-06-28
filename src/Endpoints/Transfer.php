@@ -9,6 +9,8 @@ class Transfer extends Endpoint
     /**
      * Initiate a transfer.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#transfer-initiate
      */
     public function initiate(array $payload): self
@@ -20,6 +22,8 @@ class Transfer extends Endpoint
 
     /**
      * Finalize an initiated transfer.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#transfer-finalize
      */
@@ -33,6 +37,8 @@ class Transfer extends Endpoint
     /**
      * Initiate a bulk transfer.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#transfer-bulk
      */
     public function bulk(array $payload): self
@@ -43,7 +49,9 @@ class Transfer extends Endpoint
     }
 
     /**
-     * List the transfers made on your integration.
+     * List transfers made on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#transfer-list
      */
@@ -67,21 +75,23 @@ class Transfer extends Endpoint
     }
 
     /**
-     * Verify the status of a transfer on your integration.
+     * Verify a transfer on your integration.
      *
      * @link https://paystack.com/docs/api/#transfer-verify
      */
-    public function verify(string $reference): self
+    public function verify(string $transfer_code): self
     {
-        $this->get($this->url(self::ENDPOINT).'/verify/'.$reference);
+        $this->get($this->url(self::ENDPOINT).'/verify/'.$transfer_code);
 
         return $this;
     }
 
     /**
-     * Generates a new OTP and sends to customer.
+     * Resend OTP for a transfer.
      *
-     * @link https://paystack.com/docs/api/#transfer-control-resend-otp
+     * @param  array<string, mixed>  $payload
+     *
+     * @link https://paystack.com/docs/api/#transfer-resend-otp
      */
     public function resendOtp(array $payload): self
     {
@@ -91,21 +101,25 @@ class Transfer extends Endpoint
     }
 
     /**
-     * Disable OTP.
+     * Disable OTP requirement for transfers.
      *
-     * @link https://paystack.com/docs/api/#transfer-control-disable-otp
+     * @param  array<string, mixed>  $payload
+     *
+     * @link https://paystack.com/docs/api/#transfer-disable-otp
      */
-    public function disableOtp(): self
+    public function disableOtp(array $payload): self
     {
-        $this->post($this->url(self::ENDPOINT).'/disable_otp');
+        $this->post($this->url(self::ENDPOINT).'/disable_otp', $payload);
 
         return $this;
     }
 
     /**
-     * Finalize the request to disable OTP on your transfer.
+     * Finalize the request to disable OTP on your transfers.
      *
-     * @link https://paystack.com/docs/api/#transfer-control-finalize-disable-otp
+     * @param  array<string, mixed>  $payload
+     *
+     * @link https://paystack.com/docs/api/#transfer-disable-otp-finalize
      */
     public function disableOtpFinalize(array $payload): self
     {

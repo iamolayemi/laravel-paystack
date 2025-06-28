@@ -15,11 +15,15 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function a_transaction_can_be_initialized()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transaction/initialize_transaction.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/initialize_transaction.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transaction/initialize' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/initialize_transaction.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -39,11 +43,15 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function a_transaction_can_be_verified()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transaction/verify_transaction.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/verify_transaction.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transaction/verify/DG4uishudoq90LD' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/verify_transaction.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -61,11 +69,15 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_transactions()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transaction/list_transactions.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/list_transactions.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transaction' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/list_transactions.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -84,11 +96,15 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_transaction()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transaction/fetch_transaction.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/fetch_transaction.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transaction/292584114' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/fetch_transaction.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -107,11 +123,15 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function an_authorization_can_be_charged()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transaction/charge_authorization.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/charge_authorization.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transaction/charge_authorization' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/charge_authorization.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -131,11 +151,15 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function an_authorization_can_be_checked()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transaction/check_authorization.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/check_authorization.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transaction/check_authorization' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/check_authorization.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -153,17 +177,19 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function it_returns_transaction_timeline()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transaction/timeline/DG4uishudoq90LD' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/transaction_timeline.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transaction/transaction_timeline.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/transaction_timeline.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transaction/timeline/DG4uishudoq90LD' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transaction()
             ->timeline(self::TRANSACTION_REFERENCE)->response();
@@ -176,17 +202,19 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function it_returns_transaction_totals()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transaction/totals' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/transaction_totals.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transaction/transaction_totals.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/transaction_totals.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transaction/totals' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transaction()
             ->totals()->response();
@@ -200,17 +228,19 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function all_transactions_can_be_exported()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transaction/export' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/export_transactions.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transaction/export_transactions.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/export_transactions.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transaction/export' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
         $response = Paystack::transaction()
             ->export()->response();
 
@@ -223,17 +253,19 @@ class TransactionEndpointTest extends TestCase
     /** @test */
     public function a_partial_debit_can_be_initiated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transaction/partial_debit' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transaction/partial_debit.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transaction/partial_debit.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transaction/partial_debit.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transaction/partial_debit' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::transaction()
             ->partialDebit([])->response();

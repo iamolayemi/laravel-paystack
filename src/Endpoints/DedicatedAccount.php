@@ -9,6 +9,8 @@ class DedicatedAccount extends Endpoint
     /**
      * Create a Dedicated NUBAN and assign to a customer.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#dedicated-nuban-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class DedicatedAccount extends Endpoint
 
     /**
      * List dedicated accounts available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link
      */
@@ -57,6 +61,8 @@ class DedicatedAccount extends Endpoint
     /**
      * Split a dedicated account transaction with one or more accounts.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#dedicated-nuban-add-split
      */
     public function addSplit(array $payload): self
@@ -68,6 +74,8 @@ class DedicatedAccount extends Endpoint
 
     /**
      * Remove split payment for a dedicated account.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#dedicated-nuban-remove-split
      */

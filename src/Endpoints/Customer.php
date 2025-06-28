@@ -9,6 +9,8 @@ class Customer extends Endpoint
     /**
      * Create a customer on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#customer-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class Customer extends Endpoint
 
     /**
      * List customers available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#customer-list
      */
@@ -45,6 +49,8 @@ class Customer extends Endpoint
     /**
      * Update a customer's details on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#customer-update
      */
     public function update(string $customer_code, array $payload = []): self
@@ -56,6 +62,8 @@ class Customer extends Endpoint
 
     /**
      * Validate a customer's identity.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#customer-validate
      */
@@ -69,6 +77,8 @@ class Customer extends Endpoint
     /**
      * Whitelist or blacklist a customer on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#customer-whitelist-blacklist
      */
     public function whitelist(array $payload): self
@@ -80,6 +90,8 @@ class Customer extends Endpoint
 
     /**
      * Deactivate an authorization when the card needs to be forgotten.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#customer-deactivate-authorization
      */

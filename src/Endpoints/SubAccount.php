@@ -9,6 +9,8 @@ class SubAccount extends Endpoint
     /**
      * Create a subaccount on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#subaccount-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class SubAccount extends Endpoint
 
     /**
      * List subaccounts available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#subaccount-list
      */
@@ -44,6 +48,8 @@ class SubAccount extends Endpoint
 
     /**
      * Update a subaccount details on your integration.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#subaccount-update
      */

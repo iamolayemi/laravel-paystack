@@ -15,17 +15,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function a_customer_can_be_created()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/create_customer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/create_customer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/create_customer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()
             ->create([])->response();
@@ -39,17 +41,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_customers()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/list_customers.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/list_customers.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/list_customers.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()
             ->list()->response();
@@ -63,17 +67,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_customer()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer/bojack@horsinaround.com' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/fetch_customer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/fetch_customer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/fetch_customer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer/bojack@horsinaround.com' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()
             ->fetch(self::CUSTOMER_EMAIL)->response();
@@ -87,17 +93,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function a_customer_can_be_updated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer/CUS_xnxdt6s1zg1f4nx' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/update_customer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/update_customer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/update_customer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer/CUS_xnxdt6s1zg1f4nx' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()
             ->update(self::CUSTOMER_CODE, [])->response();
@@ -112,17 +120,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function a_customer_can_be_identified()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer/CUS_xnxdt6s1zg1f4nx/identification' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/validate_customer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/validate_customer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/validate_customer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer/CUS_xnxdt6s1zg1f4nx/identification' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()->validate(self::CUSTOMER_CODE, [])->response();
 
@@ -134,17 +144,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function a_customer_can_be_whitelisted()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer/set_risk_action' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/whitelist_customer.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/whitelist_customer.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/whitelist_customer.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer/set_risk_action' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()->whitelist([])->response();
 
@@ -156,17 +168,19 @@ class CustomerEndpointTest extends TestCase
     /** @test */
     public function a_customer_authorization_can_be_deactivated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/customer/deactivate_authorization' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/customer/deactivate_authorization.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/customer/deactivate_authorization.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/customer/deactivate_authorization.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/customer/deactivate_authorization' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::customer()->deactivateAuthorization([])->response();
 

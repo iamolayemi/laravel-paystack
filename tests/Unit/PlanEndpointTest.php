@@ -13,11 +13,15 @@ class PlanEndpointTest extends TestCase
     /** @test */
     public function a_plan_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/plan/create_plan.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/plan/create_plan.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/plan' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/plan/create_plan.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -38,11 +42,15 @@ class PlanEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_plans()
     {
+        $json = file_get_contents('tests/stubs/endpoints/plan/list_plans.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/plan/list_plans.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/plan' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/plan/list_plans.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -62,11 +70,15 @@ class PlanEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_plan()
     {
+        $json = file_get_contents('tests/stubs/endpoints/plan/fetch_plan.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/plan/fetch_plan.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/plan/PLN_gx2wn530m0i3w3m' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/plan/fetch_plan.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -86,11 +98,15 @@ class PlanEndpointTest extends TestCase
     /** @test */
     public function a_plan_can_be_updated()
     {
+        $json = file_get_contents('tests/stubs/endpoints/plan/update_plan.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/plan/update_plan.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/plan/PLN_gx2wn530m0i3w3m' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/plan/update_plan.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']

@@ -20,6 +20,7 @@ use Iamolayemi\Paystack\Endpoints\Subscription;
 use Iamolayemi\Paystack\Endpoints\Transaction;
 use Iamolayemi\Paystack\Endpoints\Transfer;
 use Iamolayemi\Paystack\Endpoints\TransferRecipient;
+use Iamolayemi\Paystack\Exceptions\PaystackValidationException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 
@@ -31,6 +32,8 @@ class Paystack
 
     /**
      * Paystack constructor.
+     *
+     * @throws PaystackValidationException
      */
     public function __construct(string $secretKey)
     {
@@ -38,14 +41,37 @@ class Paystack
         $this->connect();
     }
 
-    private function setSecretKey($secretKey): void
+    /**
+     * Set the secret key with validation.
+     *
+     * @throws PaystackValidationException
+     */
+    private function setSecretKey(string $secretKey): void
     {
+        if (empty($secretKey)) {
+            throw new PaystackValidationException('Paystack secret key is required');
+        }
+
+        if (! str_starts_with($secretKey, 'sk_')) {
+            throw new PaystackValidationException('Invalid Paystack secret key format. Must start with "sk_"');
+        }
+
         $this->secretKey = $secretKey;
     }
 
+    /**
+     * Establish connection to Paystack API.
+     */
     private function connect(): void
     {
-        $this->connection = Http::withToken($this->secretKey);
+        $this->connection = Http::withToken($this->secretKey)
+            ->withHeaders([
+                'User-Agent' => 'Laravel-Paystack/2.0',
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ])
+            ->timeout(30)
+            ->retry(3, 1000);
     }
 
     public function getConnection(): ?PendingRequest
@@ -54,21 +80,27 @@ class Paystack
     }
 
     /**
+     * Get the secret key (for internal use only).
+     */
+    public function getSecretKey(): string
+    {
+        return $this->secretKey;
+    }
+
+    /**
      * Generates a unique reference
      */
     public function generateReference(?string $transactionPrefix = null): string
     {
         if ($transactionPrefix) {
-            return $transactionPrefix.'_'.uniqid(time());
+            return $transactionPrefix.'_'.uniqid((string) time());
         }
 
-        return 'PK_'.uniqid(time());
+        return 'PK_'.uniqid((string) time());
     }
 
     /**
      * Create a new Balance instance.
-     *
-     * @throws \Exception
      */
     public function balance(): Balance
     {
@@ -77,8 +109,6 @@ class Paystack
 
     /**
      * Create a new Bank instance.
-     *
-     * @throws \Exception
      */
     public function bank(): Bank
     {
@@ -87,8 +117,6 @@ class Paystack
 
     /**
      * Create a new Country instance.
-     *
-     * @throws \Exception
      */
     public function country(): Country
     {
@@ -97,8 +125,6 @@ class Paystack
 
     /**
      * Create a new customer instance.
-     *
-     * @throws \Exception
      */
     public function customer(): Customer
     {
@@ -107,8 +133,6 @@ class Paystack
 
     /**
      * Create a new dedicated account instance.
-     *
-     * @throws \Exception
      */
     public function dedicatedAccount(): DedicatedAccount
     {
@@ -117,8 +141,6 @@ class Paystack
 
     /**
      * Create a new invoice instance.
-     *
-     * @throws \Exception
      */
     public function invoice(): Invoice
     {
@@ -127,8 +149,6 @@ class Paystack
 
     /**
      * Create a new page instance.
-     *
-     * @throws \Exception
      */
     public function page(): Page
     {
@@ -137,8 +157,6 @@ class Paystack
 
     /**
      * Create a new plan instance.
-     *
-     * @throws \Exception
      */
     public function plan(): Plan
     {
@@ -147,8 +165,6 @@ class Paystack
 
     /**
      * Create a new Product instance.
-     *
-     * @throws \Exception
      */
     public function product(): Product
     {
@@ -157,8 +173,6 @@ class Paystack
 
     /**
      * Create a new TransferRecipient instance.
-     *
-     * @throws \Exception
      */
     public function recipient(): TransferRecipient
     {
@@ -167,8 +181,6 @@ class Paystack
 
     /**
      * Create a new Refund instance.
-     *
-     * @throws \Exception
      */
     public function refund(): Refund
     {
@@ -177,8 +189,6 @@ class Paystack
 
     /**
      * Create a new Resolve instance.
-     *
-     * @throws \Exception
      */
     public function resolve(): Resolve
     {
@@ -187,8 +197,6 @@ class Paystack
 
     /**
      * Create a new Settlement instance.
-     *
-     * @throws \Exception
      */
     public function settlement(): Settlement
     {
@@ -197,8 +205,6 @@ class Paystack
 
     /**
      * Create a new split transaction instance.
-     *
-     * @throws \Exception
      */
     public function split(): Split
     {
@@ -206,9 +212,7 @@ class Paystack
     }
 
     /**
-     * Create a new SubAccount instance.
-     *
-     * @throws \Exception
+     * Create a new sub account instance.
      */
     public function subAccount(): SubAccount
     {
@@ -216,9 +220,7 @@ class Paystack
     }
 
     /**
-     * Create a new Subscription instance.
-     *
-     * @throws \Exception
+     * Create a new subscription instance.
      */
     public function subscription(): Subscription
     {
@@ -227,8 +229,6 @@ class Paystack
 
     /**
      * Create a new transaction instance.
-     *
-     * @throws \Exception
      */
     public function transaction(): Transaction
     {
@@ -236,9 +236,7 @@ class Paystack
     }
 
     /**
-     * Create a new Transfer instance.
-     *
-     * @throws \Exception
+     * Create a new transfer instance.
      */
     public function transfer(): Transfer
     {

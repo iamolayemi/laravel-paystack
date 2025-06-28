@@ -13,11 +13,15 @@ class SubscriptionEndpointTest extends TestCase
     /** @test */
     public function a_subscription_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subscription/create_subscription.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subscription/create_subscription.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subscription' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subscription/create_subscription.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -37,11 +41,15 @@ class SubscriptionEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_subscriptions()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subscription/list_subscriptions.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subscription/list_subscriptions.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subscription' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subscription/list_subscriptions.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -61,11 +69,15 @@ class SubscriptionEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_subscription()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subscription/fetch_subscription.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subscription/fetch_subscription.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subscription/SUB_vsyqdmlzble3uii' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subscription/fetch_subscription.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -85,11 +97,15 @@ class SubscriptionEndpointTest extends TestCase
     /** @test */
     public function a_subscription_can_be_enabled()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subscription/enable_subscription.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subscription/enable_subscription.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subscription/enable' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subscription/enable_subscription.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -108,11 +124,15 @@ class SubscriptionEndpointTest extends TestCase
     /** @test */
     public function a_subscription_can_be_disabled()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subscription/disable_subscription.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subscription/disable_subscription.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subscription/disable' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subscription/disable_subscription.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']

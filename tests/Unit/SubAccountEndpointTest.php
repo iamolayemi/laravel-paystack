@@ -13,11 +13,15 @@ class SubAccountEndpointTest extends TestCase
     /** @test */
     public function a_subaccount_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subaccount/create_subaccount.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subaccount/create_subaccount.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subaccount' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subaccount/create_subaccount.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -39,11 +43,15 @@ class SubAccountEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_subaccounts()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subaccount/list_subaccounts.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subaccount/list_subaccounts.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subaccount' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subaccount/list_subaccounts.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -61,13 +69,17 @@ class SubAccountEndpointTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_the_details_of_a_subAccount()
+    public function it_returns_the_details_of_a_sub_account()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subaccount/fetch_subaccount.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subaccount/fetch_subaccount.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subaccount/55' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subaccount/fetch_subaccount.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -87,11 +99,15 @@ class SubAccountEndpointTest extends TestCase
     /** @test */
     public function a_subaccount_can_be_updated()
     {
+        $json = file_get_contents('tests/stubs/endpoints/subaccount/update_subaccount.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/subaccount/update_subaccount.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/subaccount/55' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/subaccount/update_subaccount.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']

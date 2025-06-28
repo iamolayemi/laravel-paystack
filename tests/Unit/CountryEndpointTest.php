@@ -11,17 +11,19 @@ class CountryEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_countries()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/country' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/country/list_countries.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/country/list_countries.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/country/list_countries.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/country' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::country()
             ->list()->response();
@@ -35,17 +37,19 @@ class CountryEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_nuban_providers()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/address_verification/states?country=CA' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/country/list_country_states.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/country/list_country_states.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/country/list_country_states.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/address_verification/states?country=CA' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::country()
             ->states('CA')->response();

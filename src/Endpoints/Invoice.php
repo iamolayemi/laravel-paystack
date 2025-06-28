@@ -7,9 +7,11 @@ class Invoice extends Endpoint
     protected const ENDPOINT = '/paymentrequest';
 
     /**
-     * Create an invoice on your integration.
+     * Create an invoice for payment on your integration.
      *
-     * @link https://paystack.com/docs/api/#invoice-create
+     * @param  array<string, mixed>  $payload
+     *
+     * @link https://paystack.com/docs/api/#payment-request-create
      */
     public function create(array $payload): self
     {
@@ -19,9 +21,11 @@ class Invoice extends Endpoint
     }
 
     /**
-     * List the invoice available on your integration.
+     * List payment requests available on your integration.
      *
-     * @link https://paystack.com/docs/api/#invoice-list
+     * @param  array<string, mixed>  $query
+     *
+     * @link https://paystack.com/docs/api/#payment-request-list
      */
     public function list(array $query = []): self
     {
@@ -91,9 +95,11 @@ class Invoice extends Endpoint
     }
 
     /**
-     * Update an invoice details on your integration.
+     * Update an invoice on your integration.
      *
-     * @link https://paystack.com/docs/api/#invoice-update
+     * @param  array<string, mixed>  $payload
+     *
+     * @link https://paystack.com/docs/api/#payment-request-update
      */
     public function update(string $invoice_id, array $payload = []): self
     {
