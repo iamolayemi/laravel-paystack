@@ -12,12 +12,18 @@ class PaystackServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if ($this->app->runningInConsole()) {
+        if (
+            $this->app->runningInConsole()
+        ) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('paystack.php'),
             ], 'config');
         }
-        $this->validator();
+
+        // Register custom validation rule for Laravel 10+
+        Validator::extend('required_string', function ($attribute, $value, $parameters, $validator) {
+            return is_string($value) && ! empty(trim($value));
+        }, 'The :attribute must be a non-empty string.');
     }
 
     /**
@@ -30,21 +36,14 @@ class PaystackServiceProvider extends ServiceProvider
 
         // Register the main class to use with the facade
         $this->app->bind('paystack', function () {
-
-            //validate required credentials
+            // Validate required credentials
             $config = config('paystack');
-            Validator::make($config, [
-                'secret_key' => 'required|string',
-            ])->validate();
 
-            return new Paystack(config('paystack.secret_key'));
-        });
-    }
+            if (empty($config['secret_key'])) {
+                throw new \InvalidArgumentException('Paystack secret key is required. Please set PAYSTACK_SECRET_KEY in your .env file.');
+            }
 
-    private function validator()
-    {
-        Validator::macro('required_string', function ($attribute, $value, $arguments) {
-            return is_string($value) && ! empty($value);
+            return new Paystack($config['secret_key']);
         });
     }
 }

@@ -1,0 +1,143 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.1, 8.2, 8.3]
+        laravel: [9.*, 10.*, 11.*]
+        dependency-version: [prefer-stable]
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, iconv, intl
+        tools: composer:v2
+        coverage: none
+
+    - name: Install dependencies
+      run: composer install --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+
+    - name: Execute tests (Unit and Feature)
+      run: vendor/bin/phpunit --coverage-text --coverage-filter=src
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true
+
+  static-analysis:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, iconv, intl
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-interaction
+
+    - name: Run PHPStan
+      run: vendor/bin/phpstan analyse
+
+    - name: Run PHP CS Fixer (dry-run)
+      run: vendor/bin/php-cs-fixer fix --dry-run --diff
+
+  security:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, iconv, intl
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-interaction
+
+    - name: Security check
+      run: vendor/bin/security-checker security:check composer.lock
+
+    - name: Run Roave Security Advisories
+      run: vendor/bin/roave-security-advisories:check
+
+  code-quality:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, iconv, intl
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-interaction
+
+    - name: Run Laravel Pint
+      run: vendor/bin/pint --test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [test, static-analysis, security, code-quality]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3
+        extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, iconv, intl
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-interaction
+
+    - name: Build package
+      run: composer install --no-dev --optimize-autoloader
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-files
+        path: |
+          vendor/
+          composer.json
+          composer.lock

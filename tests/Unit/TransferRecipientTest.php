@@ -13,11 +13,15 @@ class TransferRecipientTest extends TestCase
     /** @test */
     public function a_recipient_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transferrecipient/create_recipent.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transferrecipient/create_recipent.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transferrecipient' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transferrecipient/create_recipent.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -38,11 +42,15 @@ class TransferRecipientTest extends TestCase
     /** @test */
     public function a_bulk_recipient_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transferrecipient/create_bulk_recipent.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transferrecipient/create_bulk_recipent.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transferrecipient/bulk' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transferrecipient/create_bulk_recipent.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -62,11 +70,15 @@ class TransferRecipientTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_recipients()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transferrecipient/list_recipents.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transferrecipient/list_recipents.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transferrecipient' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transferrecipient/list_recipents.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -86,11 +98,15 @@ class TransferRecipientTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_recipient()
     {
+        $json = file_get_contents('tests/stubs/endpoints/transferrecipient/fetch_recipent.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transferrecipient/fetch_recipent.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/transferrecipient/RCP_2x5j67tnnw1t98k' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/transferrecipient/fetch_recipent.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -110,17 +126,19 @@ class TransferRecipientTest extends TestCase
     /** @test */
     public function a_recipient_can_be_updated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transferrecipient/RCP_2x5j67tnnw1t98k' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transferrecipient/update_recipent.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transferrecipient/update_recipent.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transferrecipient/update_recipent.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transferrecipient/RCP_2x5j67tnnw1t98k' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::recipient()
             ->update(self::RECIPIENT_CODE, [])->response();
@@ -134,17 +152,19 @@ class TransferRecipientTest extends TestCase
     /** @test */
     public function a_recipient_can_be_deactivated()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/transferrecipient/RCP_2x5j67tnnw1t98k' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/transferrecipient/delete_recipent.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/transferrecipient/delete_recipent.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/transferrecipient/delete_recipent.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/transferrecipient/RCP_2x5j67tnnw1t98k' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::recipient()->deactivate(self::RECIPIENT_CODE)->response();
 

@@ -4,14 +4,18 @@ namespace Iamolayemi\Paystack\Endpoints;
 
 class Resolve extends Endpoint
 {
+    protected const ENDPOINT = '/';
+
     /**
      * Confirm an account belongs to the right customer.
      *
+     * @param  array<string, mixed>  $query
+     *
      * @link https://paystack.com/docs/api/#verification-resolve-account
      */
-    public function bank(array $query = []): self
+    public function bank(array $query): self
     {
-        $this->get($this->url('/bank/resolve'), $query);
+        $this->get($this->url('bank/resolve'), $query);
 
         return $this;
     }
@@ -19,11 +23,13 @@ class Resolve extends Endpoint
     /**
      * Check if an account number and BVN are linked.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#verification-match-bvn
      */
-    public function bvn(array $payload = []): self
+    public function bvn(array $payload): self
     {
-        $this->post('/bvn/match', $payload);
+        $this->post($this->url('bvn/match'), $payload);
 
         return $this;
     }
@@ -35,7 +41,7 @@ class Resolve extends Endpoint
      */
     public function card(string $card_bin): self
     {
-        $this->get('/decision/bin/'.$card_bin);
+        $this->get($this->url('decision/bin/'.$card_bin));
 
         return $this;
     }

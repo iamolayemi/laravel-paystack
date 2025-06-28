@@ -1,0 +1,14 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/stubs
+    ignoreErrors:
+        - '#Call to an undefined static method Iamolayemi\\Paystack\\Facades\\Paystack::#'
+        - '#Method .* has no return type specified#'
+        - '#Class .* does not have a constructor and must be instantiated without any parameters#'
+    bootstrapFiles:
+        - vendor/autoload.php
+    tmpDir: build/phpstan

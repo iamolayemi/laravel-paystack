@@ -9,6 +9,8 @@ class Page extends Endpoint
     /**
      * Create a payment page on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#page-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class Page extends Endpoint
 
     /**
      * List payment pages available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#page-list
      */
@@ -45,6 +49,8 @@ class Page extends Endpoint
     /**
      * Update a page details on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#page-update
      */
     public function update(string $page_id, array $payload = []): self
@@ -59,7 +65,7 @@ class Page extends Endpoint
      *
      * @link https://paystack.com/docs/api/#page-check-slug
      */
-    public function checkAvailability(string $slug): self
+    public function checkSlug(string $slug): self
     {
         $this->get($this->url(self::ENDPOINT).'/check_slug_availability/'.$slug);
 
@@ -69,9 +75,11 @@ class Page extends Endpoint
     /**
      * Check the availability of a slug for a payment page.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#page-add-products
      */
-    public function addProduct(int $page_id, array $payload = []): self
+    public function addProduct(string $page_id, array $payload = []): self
     {
         $this->post($this->url(self::ENDPOINT).'/'.$page_id.'/product', $payload);
 

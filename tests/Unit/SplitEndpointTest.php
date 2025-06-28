@@ -13,11 +13,15 @@ class SplitEndpointTest extends TestCase
     /** @test */
     public function a_split_payment_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/split/create_split.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/split/create_split.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/split' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/split/create_split.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -37,11 +41,15 @@ class SplitEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_splits()
     {
+        $json = file_get_contents('tests/stubs/endpoints/split/list_splits.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/split/list_splits.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/split' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/split/list_splits.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -61,11 +69,15 @@ class SplitEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_split()
     {
+        $json = file_get_contents('tests/stubs/endpoints/split/fetch_split.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/split/fetch_split.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/split/12345' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/split/fetch_split.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -85,11 +97,15 @@ class SplitEndpointTest extends TestCase
     /** @test */
     public function a_split_group_can_be_updated()
     {
+        $json = file_get_contents('tests/stubs/endpoints/split/update_split.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/split/update_split.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/split/12345' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/split/update_split.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -109,11 +125,15 @@ class SplitEndpointTest extends TestCase
     /** @test */
     public function a_subaccount_can_be_added_to_split()
     {
+        $json = file_get_contents('tests/stubs/endpoints/split/add_subaccount.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/split/add_subaccount.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/split/12345/subaccount/add' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/split/add_subaccount.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -133,11 +153,15 @@ class SplitEndpointTest extends TestCase
     /** @test */
     public function a_subaccount_can_be_removed_from_a_split()
     {
+        $json = file_get_contents('tests/stubs/endpoints/split/remove_subaccount.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/split/remove_subaccount.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/split/12345/subaccount/remove' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/split/remove_subaccount.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']

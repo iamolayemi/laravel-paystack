@@ -9,6 +9,8 @@ class Refund extends Endpoint
     /**
      * Initiate a refund on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#refund-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class Refund extends Endpoint
 
     /**
      * List refunds available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#refund-list
      */

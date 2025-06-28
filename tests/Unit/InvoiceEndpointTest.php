@@ -13,11 +13,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function an_invoice_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/create_invoice.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/create_invoice.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/create_invoice.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -36,11 +40,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_invoices()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/list_invoices.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/list_invoices.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/list_invoices.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -60,11 +68,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_an_invoice()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/fetch_invoice.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/fetch_invoice.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest/3136406' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/fetch_invoice.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -84,11 +96,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function an_invoice_can_be_verify()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/verify_invoice.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/verify_invoice.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest/verify/3136406' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/verify_invoice.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -108,11 +124,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function an_invoice_notification_can_be_sent()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/send_notification.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/send_notification.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest/notify/3136406' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/send_notification.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -131,11 +151,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_invoice_metrics()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/invoice_totals.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/invoice_totals.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest/totals' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/invoice_totals.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -155,11 +179,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function an_invoice_can_be_finalized()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/finalize_invoice.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/finalize_invoice.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest/finalize/3136406' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/finalize_invoice.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -179,11 +207,15 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function an_invoice_can_be_updated()
     {
+        $json = file_get_contents('tests/stubs/endpoints/invoice/update_invoice.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/update_invoice.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/paymentrequest/3136406' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/update_invoice.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -202,17 +234,19 @@ class InvoiceEndpointTest extends TestCase
     /** @test */
     public function an_invoice_can_be_archived()
     {
-        Http::fake(
-            [
-                'https://api.paystack.co/paymentrequest/archive/3136406' => Http::response(
-                    json_decode(
-                        file_get_contents('tests/stubs/endpoints/invoice/archive_invoice.json'),
-                        true
-                    ),
-                    200, ['Headers']
+        $json = file_get_contents('tests/stubs/endpoints/invoice/archive_invoice.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/invoice/archive_invoice.json');
+        }
+        Http::fake([
+            'https://api.paystack.co/paymentrequest/archive/3136406' => Http::response(
+                json_decode(
+                    $json,
+                    true
                 ),
-            ]
-        );
+                200, ['Headers']
+            ),
+        ]);
 
         $response = Paystack::invoice()
             ->archive(self::INVOICE_ID)->response();

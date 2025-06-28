@@ -9,6 +9,8 @@ class Product extends Endpoint
     /**
      * Create a product on your integration.
      *
+     * @param  array<string, mixed>  $payload
+     *
      * @link https://paystack.com/docs/api/#product-create
      */
     public function create(array $payload): self
@@ -20,6 +22,8 @@ class Product extends Endpoint
 
     /**
      * List products available on your integration.
+     *
+     * @param  array<string, mixed>  $query
      *
      * @link https://paystack.com/docs/api/#product-list
      */
@@ -44,6 +48,8 @@ class Product extends Endpoint
 
     /**
      * Update a product details on your integration.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#product-update
      */

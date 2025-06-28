@@ -7,7 +7,9 @@ class TransferRecipient extends Endpoint
     protected const ENDPOINT = '/transferrecipient';
 
     /**
-     * Creates a new recipient.
+     * Creates a new recipient. A duplicate account number will lead to the retrieval of the existing record.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#transfer-recipient-create
      */
@@ -19,7 +21,9 @@ class TransferRecipient extends Endpoint
     }
 
     /**
-     * Creates a new recipient.
+     * Creates multiple transfer recipients in batches. A duplicate account number will lead to the retrieval of the existing record.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#transfer-recipient-bulk
      */
@@ -33,6 +37,8 @@ class TransferRecipient extends Endpoint
     /**
      * List transfer recipients available on your integration.
      *
+     * @param  array<string, mixed>  $query
+     *
      * @link https://paystack.com/docs/api/#transfer-recipient-list
      */
     public function list(array $query = []): self
@@ -43,19 +49,21 @@ class TransferRecipient extends Endpoint
     }
 
     /**
-     * Fetch the details of a transfer recipient.
+     * Get details of a transfer recipient on your integration.
      *
      * @link https://paystack.com/docs/api/#transfer-recipient-fetch
      */
-    public function fetch(string $customer_email): self
+    public function fetch(string $recipient_code): self
     {
-        $this->get($this->url(self::ENDPOINT).'/'.$customer_email);
+        $this->get($this->url(self::ENDPOINT).'/'.$recipient_code);
 
         return $this;
     }
 
     /**
-     * Update an existing recipient.
+     * Update a transfer recipient details on your integration.
+     *
+     * @param  array<string, mixed>  $payload
      *
      * @link https://paystack.com/docs/api/#transfer-recipient-update
      */
@@ -67,7 +75,7 @@ class TransferRecipient extends Endpoint
     }
 
     /**
-     * Deletes a transfer recipient (sets the transfer recipient to inactive).
+     * Delete a transfer recipient (sets the transfer recipient to inactive).
      *
      * @link https://paystack.com/docs/api/#transfer-recipient-delete
      */

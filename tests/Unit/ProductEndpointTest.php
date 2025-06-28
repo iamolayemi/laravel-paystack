@@ -13,11 +13,15 @@ class ProductEndpointTest extends TestCase
     /** @test */
     public function a_product_can_be_created()
     {
+        $json = file_get_contents('tests/stubs/endpoints/product/create_product.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/product/create_product.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/product' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/product/create_product.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -38,11 +42,15 @@ class ProductEndpointTest extends TestCase
     /** @test */
     public function it_returns_a_list_of_products()
     {
+        $json = file_get_contents('tests/stubs/endpoints/product/list_products.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/product/list_products.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/product' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/product/list_products.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -62,11 +70,15 @@ class ProductEndpointTest extends TestCase
     /** @test */
     public function it_returns_the_details_of_a_product()
     {
+        $json = file_get_contents('tests/stubs/endpoints/product/fetch_product.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/product/fetch_product.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/product/526' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/product/fetch_product.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
@@ -86,11 +98,15 @@ class ProductEndpointTest extends TestCase
     /** @test */
     public function a_product_can_be_updated()
     {
+        $json = file_get_contents('tests/stubs/endpoints/product/update_product.json');
+        if ($json === false) {
+            throw new \RuntimeException('Failed to read stub file: tests/stubs/endpoints/product/update_product.json');
+        }
         Http::fake(
             [
                 'https://api.paystack.co/product/526' => Http::response(
                     json_decode(
-                        file_get_contents('tests/stubs/endpoints/product/update_product.json'),
+                        $json,
                         true
                     ),
                     200, ['Headers']
