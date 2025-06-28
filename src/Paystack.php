@@ -33,6 +33,7 @@ class Paystack
 
     /**
      * Paystack constructor.
+     *
      * @throws PaystackConnectionException
      */
     public function __construct(string $secretKey)
@@ -47,7 +48,7 @@ class Paystack
             throw new PaystackConnectionException('Secret key cannot be empty.');
         }
 
-        if (!Str::startsWith($secretKey, ['sk_test_', 'sk_live_'])) {
+        if (! Str::startsWith($secretKey, ['sk_test_', 'sk_live_'])) {
             throw new PaystackConnectionException('Invalid secret key format. Must start with sk_test_ or sk_live_.');
         }
 

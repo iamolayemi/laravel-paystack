@@ -7,10 +7,11 @@ use Exception;
 class PaystackApiException extends PaystackException
 {
     protected ?string $apiCode = null;
+
     protected ?string $apiMessage = null;
 
     public function __construct(
-        string $message = "API request failed.",
+        string $message = 'API request failed.',
         int $code = 0,
         ?Exception $previous = null,
         array $context = [],

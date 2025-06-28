@@ -31,6 +31,7 @@ abstract class Endpoint
 
     /**
      * Return the data from http request.
+     *
      * @return array|null The data from the response, or null if no request has been made.
      */
     public function data(): ?array
@@ -40,20 +41,22 @@ abstract class Endpoint
 
     /**
      * Return the response from http request.
+     *
      * @param  string  $key  Optional key to extract a specific value from the JSON response.
      * @return array|mixed The full response or a specific value from the response.
+     *
      * @throws PaystackApiException
      */
     public function response(string $key = ''): mixed
     {
-        if (!$this->response) {
+        if (! $this->response) {
             return null;
         }
 
         $jsonResponse = $this->response->json();
 
         // Check if the API response indicates an error
-        if (isset($jsonResponse['status']) && !$jsonResponse['status']) {
+        if (isset($jsonResponse['status']) && ! $jsonResponse['status']) {
             throw PaystackApiException::fromApiResponse($jsonResponse);
         }
 
@@ -90,11 +93,12 @@ abstract class Endpoint
 
     protected function url(string $endpoint): string
     {
-        return self::BASE_URL . ltrim($endpoint, '/');
+        return self::BASE_URL.ltrim($endpoint, '/');
     }
 
     /**
      * Validate payload against rules
+     *
      * @throws PaystackValidationException
      */
     protected function validatePayload(array $payload, array $rules): void
@@ -114,6 +118,7 @@ abstract class Endpoint
 
     /**
      * Make a http get request
+     *
      * @param  string  $url  The URL to send the request to.
      * @param  array|string|null  $query  Optional query string parameters.
      * @return self This instance for method chaining.
@@ -128,6 +133,7 @@ abstract class Endpoint
 
     /**
      * Make a http post request
+     *
      * @param  string  $url  The URL to send the request to.
      * @param  array  $payload  The data to be sent.
      * @return self This instance for method chaining.
@@ -142,6 +148,7 @@ abstract class Endpoint
 
     /**
      * Make a http put request
+     *
      * @param  string  $url  The URL to send the request to.
      * @param  array  $payload  The data to be sent.
      * @return self This instance for method chaining.
@@ -156,6 +163,7 @@ abstract class Endpoint
 
     /**
      * Make a http delete request
+     *
      * @param  string  $url  The URL to send the request to.
      * @param  array  $payload  The data to be sent.
      * @return self This instance for method chaining.

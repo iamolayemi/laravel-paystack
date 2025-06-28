@@ -61,7 +61,7 @@ class SubAccountEndpointTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_the_details_of_a_subAccount()
+    public function it_returns_the_details_of_a_sub_account()
     {
         Http::fake(
             [
