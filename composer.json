@@ -3,7 +3,10 @@
     "description": "A laravel package for working with paystack api",
     "keywords": [
         "paystack",
-        "laravel"
+        "laravel",
+        "payment",
+        "gateway",
+        "africa"
     ],
     "homepage": "https://github.com/iamolayemi/laravel-paystack",
     "license": "MIT",
@@ -19,18 +22,27 @@
         "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "analyse": "vendor/bin/phpstan analyse",
+        "security-check": "vendor/bin/security-checker security:check",
+        "lint": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+        "fix": "vendor/bin/php-cs-fixer fix"
     },
     "require": {
-        "php": "^8.1|^8.2",
-        "guzzlehttp/guzzle": "^7.3",
-        "illuminate/support": "^9.0|^10.0"
+        "php": "^8.1|^8.2|^8.3",
+        "guzzlehttp/guzzle": "^7.8|^8.0",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "illuminate/http": "^9.0|^10.0|^11.0"
     },
     "require-dev": {
-        "laravel/pint": "^1.10",
-        "nunomaduro/collision": "6.0|^7.0",
-        "orchestra/testbench": "^7.0|^8.0",
-        "phpunit/phpunit": "^9.0|^10.0"
+        "laravel/pint": "^1.15|^2.0",
+        "nunomaduro/collision": "^7.0|^8.0",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.0|^11.0",
+        "phpstan/phpstan": "^1.10|^2.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "enlightn/security-checker": "^1.0",
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "files": [
@@ -46,7 +58,11 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
     },
     "extra": {
         "laravel": {
@@ -57,5 +73,7 @@
                 "Paystack": "Iamolayemi\\Paystack\\Facades\\Paystack"
             }
         }
-    }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

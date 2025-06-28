@@ -1,0 +1,12 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/stubs
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Http\\Client\\Response::json\(\)#'
+    tmpDir: build/phpstan
